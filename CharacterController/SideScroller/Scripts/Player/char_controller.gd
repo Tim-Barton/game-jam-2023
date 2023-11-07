@@ -18,6 +18,7 @@ extends CharacterBody2D
 @export var controller : player_controller
 
 @export var double_jump_enabled = true
+@export var max_wall_slide_velocity = 100
 
 # Internal Variables
 ## Presets
@@ -206,7 +207,10 @@ func update_player_physics(delta):
 		character_velocity.y += gravity * gravity_modifier * delta
 	
 	if character_velocity.y > 0:
-		character_velocity.y = clamp(character_velocity.y,0,max_fall_velocity)
+		if is_on_wall():
+			character_velocity.y = clamp(character_velocity.y,0,max_wall_slide_velocity)
+		else:
+			character_velocity.y = clamp(character_velocity.y,0,max_fall_velocity)
 		
 	velocity.y = character_velocity.y
 	velocity.x = character_velocity.x
