@@ -7,7 +7,9 @@ func _ready():
 	CharacterController = $"../Level/Character"
 
 func _unhandled_input(event):
-	grab_focus()
+	#grabbing docus here was throwing debug errors, so removing for now to reduce noise
+	#grab_focus()
+	pass
 
 func change_scene(target: String):
 	SceneManager.change_scene(target, SceneManager.TransitionTypes.dissolve)
