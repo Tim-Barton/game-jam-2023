@@ -19,6 +19,8 @@ extends CharacterBody2D
 
 @export var double_jump_enabled = true
 @export var max_wall_slide_velocity = 100
+@export var wall_jump_time = 0.2
+@export var wall_jump_x_speed = 700
 
 # Internal Variables
 ## Presets
@@ -32,6 +34,7 @@ var jump_allowance_node : Timer
 var coyote_node : Timer
 var dodge_node : Timer
 var controller_node : Node
+var wall_jump_node : Timer
 
 ## Enums
 enum PlayerStates {Idle, Walk, Jumping, Falling, Landed}
@@ -67,11 +70,16 @@ func _ready():
 	new_dodge_timer.name = "dodge_time"
 	add_child(new_dodge_timer)
 	
+	var new_wall_jump_timer := Timer.new()
+	new_wall_jump_timer.name = "wall_jump_time"
+	add_child(new_wall_jump_timer)
+	
 	animation_node = get_node("animations")
 	jump_allowance_node = get_node("jump_allowance")
 	coyote_node = get_node("coyote_allowance")
 	dodge_node = get_node("dodge_time")
 	controller_node = get_node("controller_container")
+	wall_jump_node = get_node("wall_jump_time")
 	
 	set_timers()
 	
@@ -89,6 +97,8 @@ func set_timers():
 	coyote_node.one_shot = true
 	dodge_node.wait_time = dodge_time
 	dodge_node.one_shot = true
+	wall_jump_node.wait_time = wall_jump_time
+	wall_jump_node.one_shot = true
 
 func set_controller(input_controller: player_controller) -> void:
 	#Remove Previous Controllers
@@ -135,9 +145,17 @@ func get_character_input():
 		if not coyote_node.is_stopped():
 			character_velocity.y = jump_force
 			coyote_node.stop()
+		elif is_on_wall() && not is_on_floor():
+			character_velocity.y = jump_force
+			var wall_jump_velocity = wall_jump_x_speed
+			if not is_left:
+				wall_jump_velocity = wall_jump_velocity * -1
+			character_velocity.x = wall_jump_velocity
+			wall_jump_node.start()
 		elif not is_on_floor() && not double_jumped && double_jump_enabled:
 			double_jumped = true
 			character_velocity.y = jump_force
+			wall_jump_node.stop()
 		else:
 			jump_allowance_node.start()
 		
@@ -157,7 +175,8 @@ func get_character_input():
 		is_left = (direction == -1)
 	
 	#Apply Accelerations
-	if dodge_node.is_stopped():
+	#Both Dodging and wall jumps are set character X speeds while they are in control
+	if dodge_node.is_stopped() && wall_jump_node.is_stopped():
 		var adjust_rate = acceleration
 		if direction != clamp(velocity.x,-1,1):
 			adjust_rate = decceleration
@@ -210,7 +229,7 @@ func update_player_physics(delta):
 			character_velocity.y = clamp(character_velocity.y,0,max_wall_slide_velocity)
 		else:
 			character_velocity.y = clamp(character_velocity.y,0,max_fall_velocity)
-		
+	
 	velocity.y = character_velocity.y
 	velocity.x = character_velocity.x
 
@@ -220,7 +239,7 @@ func _test_only_code() -> void:
 		set_controller(human_controller.new(self))
 
 func _physics_process(delta):
-	if is_on_floor() || is_on_wall():
+	if is_on_floor():
 		double_jumped = false
 		
 	get_character_input()
