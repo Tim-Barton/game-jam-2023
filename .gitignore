@@ -13,3 +13,6 @@ export.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Ignore Builds
+Builds/
