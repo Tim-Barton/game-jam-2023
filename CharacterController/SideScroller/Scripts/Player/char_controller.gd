@@ -135,7 +135,7 @@ func get_character_input():
 		if not coyote_node.is_stopped():
 			character_velocity.y = jump_force
 			coyote_node.stop()
-		elif not double_jumped && double_jump_enabled:
+		elif not is_on_floor() && not double_jumped && double_jump_enabled:
 			double_jumped = true
 			character_velocity.y = jump_force
 		else:
