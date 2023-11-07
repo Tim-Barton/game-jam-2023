@@ -17,6 +17,8 @@ extends CharacterBody2D
 @export var dodge_speed = 700
 @export var controller : player_controller
 
+@export var double_jump_enabled = true
+
 # Internal Variables
 ## Presets
 var is_left = false
@@ -49,6 +51,7 @@ var previous_player_state : PlayerStates
 var direction = 0
 var character_velocity : Vector2
 var was_on_floor : bool
+var double_jumped = false
 
 func _ready():
 	var new_jump_timer := Timer.new()
@@ -131,10 +134,14 @@ func get_character_input():
 		if not coyote_node.is_stopped():
 			character_velocity.y = jump_force
 			coyote_node.stop()
+		elif not double_jumped && double_jump_enabled:
+			double_jumped = true
+			character_velocity.y = jump_force
 		else:
 			jump_allowance_node.start()
 		
 	if is_on_floor() && not jump_allowance_node.is_stopped():
+		double_jumped = false
 		character_velocity.y = jump_force
 		jump_allowance_node.stop()
 	

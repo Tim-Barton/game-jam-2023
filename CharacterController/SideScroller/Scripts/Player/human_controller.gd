@@ -3,7 +3,7 @@ extends player_controller
 
 var key_inputs = {
 	"ui_accept": "jump",
-	"dodge": "dodge",
+	#"dodge": "dodge",
 	"ui_left": "left",
 	"ui_right": "right"}
 
