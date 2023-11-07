@@ -142,7 +142,6 @@ func get_character_input():
 			jump_allowance_node.start()
 		
 	if is_on_floor() && not jump_allowance_node.is_stopped():
-		double_jumped = false
 		character_velocity.y = jump_force
 		jump_allowance_node.stop()
 	
@@ -221,6 +220,9 @@ func _test_only_code() -> void:
 		set_controller(human_controller.new(self))
 
 func _physics_process(delta):
+	if is_on_floor() || is_on_wall():
+		double_jumped = false
+		
 	get_character_input()
 	update_player_physics(delta)
 	update_player_state()
