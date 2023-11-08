@@ -1,10 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://dkhnd58ia1m5t"]
+[gd_scene load_steps=22 format=3 uid="uid://dkhnd58ia1m5t"]
 
 [ext_resource type="Texture2D" uid="uid://belg1mxheka3q" path="res://CharacterController/SideScroller/GFX/2 Background/Day/1.png" id="1_xwcmc"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/Snow.gd" id="2_kiv0q"]
 [ext_resource type="Texture2D" uid="uid://cbfip1qeil370" path="res://CharacterController/SideScroller/GFX/2 Background/Day/2.png" id="2_m0nrl"]
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/DayNightCycle.gd" id="3_6psvk"]
 [ext_resource type="Texture2D" uid="uid://blq2vhoethqqx" path="res://CharacterController/SideScroller/GFX/2 Background/Day/5.png" id="3_dhewo"]
 [ext_resource type="Texture2D" uid="uid://t31lxiaq515g" path="res://CharacterController/SideScroller/GFX/3 Objects/3 Power lines/4.png" id="4_ccg22"]
+[ext_resource type="Texture2D" uid="uid://bkpc1kjm4t2xn" path="res://CharacterController/SideScroller/Scenes/daynightcycle-gradient-texture.tres" id="4_x84gu"]
 [ext_resource type="Texture2D" uid="uid://bwmrr0n1ls3g5" path="res://CharacterController/SideScroller/GFX/1 Tiles/Tileset.png" id="5_kdel5"]
 [ext_resource type="PackedScene" uid="uid://v4iodnn8fvq" path="res://CharacterController/SideScroller/Prefabs/character.tscn" id="6_7wfib"]
 [ext_resource type="Texture2D" uid="uid://cbl6yo36frga1" path="res://CharacterController/SideScroller/GFX/1 Tiles/KitchenTile16.png" id="6_ujt81"]
@@ -1291,9 +1293,23 @@ text = "Snow Amount"
 [node name="value" type="HSlider" parent="UI/Panel/Adjusters/SnowAmount"]
 layout_mode = 2
 size_flags_horizontal = 3
-min_value = 200.0
+min_value = 50.0
 max_value = 1000.0
-value = 700.0
+value = 50.0
+rounded = true
+
+[node name="DayNightCycleSpeed" type="HBoxContainer" parent="UI/Panel/Adjusters"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Panel/Adjusters/DayNightCycleSpeed"]
+layout_mode = 2
+text = "Day Night Speed"
+
+[node name="value" type="HSlider" parent="UI/Panel/Adjusters/DayNightCycleSpeed"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 60.0
+value = 30.0
 rounded = true
 
 [node name="Button" type="Button" parent="UI/Panel/Adjusters"]
@@ -1309,6 +1325,12 @@ amount = 50
 process_material = SubResource("ParticleProcessMaterial_evyxp")
 lifetime = 2.0
 script = ExtResource("2_kiv0q")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Level"]
+color = Color(0.380392, 0.286275, 0.839216, 1)
+script = ExtResource("3_6psvk")
+gradient = ExtResource("4_x84gu")
+INGAME_SPEED = 30.0
 
 [node name="Background" type="Node" parent="Level"]
 
@@ -1362,4 +1384,5 @@ apex_threshold = 50
 [connection signal="value_changed" from="UI/Panel/Adjusters/DodgeTime/value" to="UI" method="UpdateCharacterRate" binds= ["DodgeTime"]]
 [connection signal="value_changed" from="UI/Panel/Adjusters/DodgeSpeed/value" to="UI" method="UpdateCharacterRate" binds= ["DodgeSpeed"]]
 [connection signal="value_changed" from="UI/Panel/Adjusters/SnowAmount/value" to="Level/Snow" method="_on_value_value_changed"]
+[connection signal="value_changed" from="UI/Panel/Adjusters/DayNightCycleSpeed/value" to="Level/CanvasModulate" method="_on_value_value_changed"]
 [connection signal="pressed" from="UI/Panel/Adjusters/Button" to="UI" method="change_scene" binds= ["res://CharacterController/SideScroller/Scenes/test_scene.tscn"]]

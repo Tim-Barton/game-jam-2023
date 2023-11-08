@@ -22,3 +22,7 @@ SceneManager="*res://CharacterController/SideScroller/Prefabs/scene_manager.tscn
 [dotnet]
 
 project/assembly_name="Game-jam-2023"
+
+[editor]
+
+movie_writer/movie_file="/Users/dustyschofield/screenrecordings/snip.avi"
