@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dkhnd58ia1m5t"]
+[gd_scene load_steps=20 format=3 uid="uid://dkhnd58ia1m5t"]
 
 [ext_resource type="Texture2D" uid="uid://belg1mxheka3q" path="res://CharacterController/SideScroller/GFX/2 Background/Day/1.png" id="1_xwcmc"]
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/Snow.gd" id="2_kiv0q"]
 [ext_resource type="Texture2D" uid="uid://cbfip1qeil370" path="res://CharacterController/SideScroller/GFX/2 Background/Day/2.png" id="2_m0nrl"]
 [ext_resource type="Texture2D" uid="uid://blq2vhoethqqx" path="res://CharacterController/SideScroller/GFX/2 Background/Day/5.png" id="3_dhewo"]
 [ext_resource type="Texture2D" uid="uid://t31lxiaq515g" path="res://CharacterController/SideScroller/GFX/3 Objects/3 Power lines/4.png" id="4_ccg22"]
@@ -50,6 +51,18 @@ HSlider/icons/tick = null
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_3rfcx")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_44xpn")
 HSlider/styles/slider = SubResource("StyleBoxFlat_xanxn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_evyxp"]
+emission_shape = 3
+emission_box_extents = Vector3(200, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(-1, 1, 2.08165e-12)
+spread = 20.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+initial_velocity_min = 50.0
+initial_velocity_max = 70.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_52t2g"]
 resource_name = "Powerplant"
@@ -1014,10 +1027,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = 15.0
-offset_right = -775.0
-offset_bottom = -285.0
+offset_left = 18.0
+offset_top = 7.0
+offset_right = -772.0
+offset_bottom = -186.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1268,27 +1281,54 @@ max_value = 1000.0
 value = 700.0
 rounded = true
 
+[node name="SnowAmount" type="HBoxContainer" parent="UI/Panel/Adjusters"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Panel/Adjusters/SnowAmount"]
+layout_mode = 2
+text = "Snow Amount"
+
+[node name="value" type="HSlider" parent="UI/Panel/Adjusters/SnowAmount"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 200.0
+max_value = 1000.0
+value = 700.0
+rounded = true
+
 [node name="Button" type="Button" parent="UI/Panel/Adjusters"]
 layout_mode = 2
 text = "Change Scene"
 
 [node name="Level" type="Node" parent="."]
 
+[node name="Snow" type="GPUParticles2D" parent="Level"]
+position = Vector2(-2, -291)
+scale = Vector2(5.36, 5.8)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_evyxp")
+lifetime = 2.0
+script = ExtResource("2_kiv0q")
+
 [node name="Background" type="Node" parent="Level"]
 
 [node name="BG" type="Sprite2D" parent="Level/Background"]
+visible = false
 scale = Vector2(2, 2)
 texture = ExtResource("1_xwcmc")
 
 [node name="2" type="Sprite2D" parent="Level/Background"]
+visible = false
 scale = Vector2(2, 2)
 texture = ExtResource("2_m0nrl")
 
 [node name="5" type="Sprite2D" parent="Level/Background"]
+visible = false
 scale = Vector2(2, 2)
 texture = ExtResource("3_dhewo")
 
 [node name="Powerline" type="Sprite2D" parent="Level/Background"]
+visible = false
 position = Vector2(-95, -31)
 texture = ExtResource("4_ccg22")
 
@@ -1321,4 +1361,5 @@ apex_threshold = 50
 [connection signal="value_changed" from="UI/Panel/Adjusters/MaxFallSpeed/value" to="UI" method="UpdateCharacterRate" binds= ["MaxFallSpeed"]]
 [connection signal="value_changed" from="UI/Panel/Adjusters/DodgeTime/value" to="UI" method="UpdateCharacterRate" binds= ["DodgeTime"]]
 [connection signal="value_changed" from="UI/Panel/Adjusters/DodgeSpeed/value" to="UI" method="UpdateCharacterRate" binds= ["DodgeSpeed"]]
+[connection signal="value_changed" from="UI/Panel/Adjusters/SnowAmount/value" to="Level/Snow" method="_on_value_value_changed"]
 [connection signal="pressed" from="UI/Panel/Adjusters/Button" to="UI" method="change_scene" binds= ["res://CharacterController/SideScroller/Scenes/test_scene.tscn"]]
