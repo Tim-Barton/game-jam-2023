@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dkhnd58ia1m5t"]
+[gd_scene load_steps=20 format=3 uid="uid://dkhnd58ia1m5t"]
 
 [ext_resource type="Texture2D" uid="uid://belg1mxheka3q" path="res://CharacterController/SideScroller/GFX/2 Background/Day/1.png" id="1_xwcmc"]
 [ext_resource type="Texture2D" uid="uid://cbfip1qeil370" path="res://CharacterController/SideScroller/GFX/2 Background/Day/2.png" id="2_m0nrl"]
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/StaminaBar.gd" id="2_yg65s"]
 [ext_resource type="Texture2D" uid="uid://blq2vhoethqqx" path="res://CharacterController/SideScroller/GFX/2 Background/Day/5.png" id="3_dhewo"]
 [ext_resource type="Texture2D" uid="uid://t31lxiaq515g" path="res://CharacterController/SideScroller/GFX/3 Objects/3 Power lines/4.png" id="4_ccg22"]
 [ext_resource type="Texture2D" uid="uid://bwmrr0n1ls3g5" path="res://CharacterController/SideScroller/GFX/1 Tiles/Tileset.png" id="5_kdel5"]
@@ -50,6 +51,8 @@ HSlider/icons/tick = null
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_3rfcx")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_44xpn")
 HSlider/styles/slider = SubResource("StyleBoxFlat_xanxn")
+
+[sub_resource type="MeshTexture" id="MeshTexture_ugl5w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_52t2g"]
 resource_name = "Powerplant"
@@ -1271,6 +1274,22 @@ rounded = true
 [node name="Button" type="Button" parent="UI/Panel/Adjusters"]
 layout_mode = 2
 text = "Change Scene"
+
+[node name="StaminaBar" type="TextureProgressBar" parent="UI"]
+z_index = 1
+layout_mode = 0
+offset_left = 1001.0
+offset_top = 288.0
+offset_right = 1060.0
+offset_bottom = 614.0
+tooltip_text = "Stamina"
+step = 0.01
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = SubResource("MeshTexture_ugl5w")
+tint_progress = Color(0.564706, 0.388235, 0.0117647, 1)
+script = ExtResource("2_yg65s")
 
 [node name="Level" type="Node" parent="."]
 
