@@ -16,8 +16,7 @@ func change_scene(target: String):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-		if Input.is_key_pressed(KEY_SPACE):
-			$StaminaBar.value -=0.05
+	pass
 
 func UpdateCharacterRate(NewValue : float, Adjuster : String):
 	match Adjuster:

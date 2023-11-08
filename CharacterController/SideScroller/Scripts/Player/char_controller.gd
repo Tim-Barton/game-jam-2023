@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var speed = 300.0
 @export var jump_force = -500.0
 @export var jump_early_release = 0.2
+@export var jump_stamina_cost = 10
 @export var gravity = 1580
 @export var acceleration = 0.1
 @export var decceleration = 0.2
@@ -16,11 +17,14 @@ extends CharacterBody2D
 @export var dodge_time = 0.1
 @export var dodge_speed = 700
 @export var controller : player_controller
-
-@export var double_jump_enabled = true
+@export var max_jumps_enabled = 2
 @export var max_wall_slide_velocity = 100
 @export var wall_jump_time = 0.2
 @export var wall_jump_x_speed = 700
+@export var max_stamina = 100
+@export var stamina_regen_rate_idle = 5
+@export var stamina_regen_rate_walk = 2
+@export var low_stamina_penalty = 0.4
 
 # Internal Variables
 ## Presets
@@ -55,7 +59,8 @@ var previous_player_state : PlayerStates
 var direction = 0
 var character_velocity : Vector2
 var was_on_floor : bool
-var double_jumped = false
+var cur_jump_count = 0
+var cur_stamina = 0
 
 func _ready():
 	var new_jump_timer := Timer.new()
@@ -87,8 +92,8 @@ func _ready():
 	sync_input_dicts()
 	floor_max_angle = char_slope_angle
 	floor_snap_length = char_snap_length
+	cur_stamina = max_stamina
 	set_controller(human_controller.new(self))
-	
 
 func set_timers():
 	jump_allowance_node.wait_time = early_jump_allowance
@@ -132,35 +137,48 @@ func is_just_released(input_check: String) -> bool:
 		if previous_input[input_check]:
 			return true
 	return false
+
+func character_jump(increase_jump_count : int, early_release : bool = false) -> float:
+	var calc_jump_force = jump_force
+	if early_release:
+		calc_jump_force *= jump_early_release
+	else:
+		if cur_stamina < jump_stamina_cost:
+			calc_jump_force = calc_jump_force * low_stamina_penalty
+		cur_stamina = clamp(cur_stamina-jump_stamina_cost,0,max_stamina)
 	
+	cur_jump_count += increase_jump_count
+	return calc_jump_force
+
 func get_character_input():
 	character_velocity.x = velocity.x
 	character_velocity.y = velocity.y
 	
 	# Handle Jump.
 	if is_just_released("jump") && velocity.y < 0:
-		character_velocity.y = character_velocity.y * jump_early_release
+		character_velocity.y = character_jump(0,true)
 		
 	if is_just_pressed("jump"):
 		if not coyote_node.is_stopped():
-			character_velocity.y = jump_force
+			character_velocity.y = character_jump(1)
 			coyote_node.stop()
 		elif is_on_wall() && not is_on_floor():
-			character_velocity.y = jump_force
+			character_velocity.y = character_jump(0)
 			var wall_jump_velocity = wall_jump_x_speed
+			if cur_stamina <= jump_stamina_cost:
+				wall_jump_velocity = wall_jump_x_speed * low_stamina_penalty
 			if not is_left:
 				wall_jump_velocity = wall_jump_velocity * -1
 			character_velocity.x = wall_jump_velocity
 			wall_jump_node.start()
-		elif not is_on_floor() && not double_jumped && double_jump_enabled:
-			double_jumped = true
-			character_velocity.y = jump_force
+		elif not is_on_floor() && cur_jump_count < (max_jumps_enabled - 1):
+			character_velocity.y = character_jump(1)
 			wall_jump_node.stop()
 		else:
 			jump_allowance_node.start()
 		
 	if is_on_floor() && not jump_allowance_node.is_stopped():
-		character_velocity.y = jump_force
+		character_velocity.y = character_jump(1)
 		jump_allowance_node.stop()
 	
 	# Direction Input
@@ -193,9 +211,9 @@ func get_character_input():
 		character_velocity.x = dodge_velocity
 		dodge_node.start()
 
-
 func update_player_state():
 	if is_on_floor():
+		cur_jump_count = 0
 		if !was_on_floor:
 			player_state = PlayerStates.Landed
 		elif direction != 0:
@@ -238,15 +256,19 @@ func _test_only_code() -> void:
 		input_dict["release_control"] = false
 		set_controller(human_controller.new(self))
 
+func player_final(delta : float) -> void:
+	if player_state == PlayerStates.Idle:
+		cur_stamina = clamp(cur_stamina+stamina_regen_rate_idle*delta,0,max_stamina)
+	elif player_state == PlayerStates.Walk:
+		cur_stamina = clamp(cur_stamina+stamina_regen_rate_walk*delta,0,max_stamina)
+	
 func _physics_process(delta):
-	if is_on_floor():
-		double_jumped = false
-		
 	get_character_input()
 	update_player_physics(delta)
 	update_player_state()
 	update_animation()
 	move_and_slide()
+	player_final(delta)
 	
 	# Coyote Time Check
 	if was_on_floor && not is_on_floor() && velocity.y == 0:
