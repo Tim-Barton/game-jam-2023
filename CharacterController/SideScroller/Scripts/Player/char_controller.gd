@@ -2,29 +2,40 @@ class_name Player
 extends CharacterBody2D
 
 # Adjustables
-@export var speed = 300.0
-@export var jump_force = -500.0
-@export var jump_early_release = 0.2
-@export var jump_stamina_cost = 10
+@export var controller : player_controller
+
+@export_group("Physics")
 @export var gravity = 1580
+@export var max_fall_velocity = 700
+
+@export_group("Speed")
+@export var speed = 300.0
 @export var acceleration = 0.1
 @export var decceleration = 0.2
-@export var early_jump_allowance = 0.1
-@export var coyote_time_allowance = 0.15
-@export var apex_float_modifier = 0.4
-@export var apex_threshold = 100
-@export var max_fall_velocity = 700
 @export var dodge_time = 0.1
 @export var dodge_speed = 700
-@export var controller : player_controller
+
+@export_group("Jump")
+@export var jump_force = -500.0
+@export var jump_early_release = 0.2
+@export var jump_stamina_cost = 5
+@export var early_jump_allowance = 0.1
+@export var coyote_time_allowance = 0.15
 @export var max_jumps_enabled = 2
+@export var apex_float_modifier = 0.4
+@export var apex_threshold = 100
+
+@export_subgroup("Wall Jump")
 @export var max_wall_slide_velocity = 100
 @export var wall_jump_time = 0.2
 @export var wall_jump_x_speed = 700
+
+@export_group("Stamina")
 @export var max_stamina = 100
 @export var stamina_regen_rate_idle = 5
 @export var stamina_regen_rate_walk = 2
 @export var low_stamina_penalty = 0.4
+@export var health_stamina_penalty = 0.5
 
 # Internal Variables
 ## Presets

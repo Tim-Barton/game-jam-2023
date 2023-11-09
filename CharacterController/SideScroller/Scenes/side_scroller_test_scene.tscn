@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://dkhnd58ia1m5t"]
+[gd_scene load_steps=22 format=3 uid="uid://dkhnd58ia1m5t"]
 
 [ext_resource type="Texture2D" uid="uid://belg1mxheka3q" path="res://CharacterController/SideScroller/GFX/2 Background/Day/1.png" id="1_xwcmc"]
 [ext_resource type="Texture2D" uid="uid://cbfip1qeil370" path="res://CharacterController/SideScroller/GFX/2 Background/Day/2.png" id="2_m0nrl"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/StaminaBar.gd" id="2_yg65s"]
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/HealthBar.gd" id="3_6dkmk"]
 [ext_resource type="Texture2D" uid="uid://blq2vhoethqqx" path="res://CharacterController/SideScroller/GFX/2 Background/Day/5.png" id="3_dhewo"]
 [ext_resource type="Texture2D" uid="uid://t31lxiaq515g" path="res://CharacterController/SideScroller/GFX/3 Objects/3 Power lines/4.png" id="4_ccg22"]
 [ext_resource type="Texture2D" uid="uid://bwmrr0n1ls3g5" path="res://CharacterController/SideScroller/GFX/1 Tiles/Tileset.png" id="5_kdel5"]
@@ -53,6 +54,8 @@ HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_44xpn")
 HSlider/styles/slider = SubResource("StyleBoxFlat_xanxn")
 
 [sub_resource type="MeshTexture" id="MeshTexture_ugl5w"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_ms847"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_52t2g"]
 resource_name = "Powerplant"
@@ -1278,18 +1281,35 @@ text = "Change Scene"
 [node name="StaminaBar" type="TextureProgressBar" parent="UI" node_paths=PackedStringArray("character_node")]
 z_index = 1
 layout_mode = 0
-offset_left = 1001.0
-offset_top = 288.0
-offset_right = 1060.0
-offset_bottom = 614.0
+offset_left = 1116.0
+offset_top = 328.0
+offset_right = 1144.0
+offset_bottom = 503.0
 tooltip_text = "Stamina"
 step = 0.01
 value = 100.0
 fill_mode = 3
 nine_patch_stretch = true
 texture_progress = SubResource("MeshTexture_ugl5w")
-tint_progress = Color(0.564706, 0.388235, 0.0117647, 1)
+tint_progress = Color(0.411765, 0.654902, 0, 1)
 script = ExtResource("2_yg65s")
+character_node = NodePath("../../Level/Character")
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI" node_paths=PackedStringArray("character_node")]
+z_index = 1
+layout_mode = 0
+offset_left = 1116.0
+offset_top = 141.0
+offset_right = 1144.0
+offset_bottom = 316.0
+step = 0.01
+value = 100.0
+allow_lesser = true
+fill_mode = 2
+nine_patch_stretch = true
+texture_progress = SubResource("MeshTexture_ms847")
+tint_progress = Color(100, 0, 0, 1)
+script = ExtResource("3_6dkmk")
 character_node = NodePath("../../Level/Character")
 
 [node name="Level" type="Node" parent="."]
@@ -1322,9 +1342,29 @@ layer_0/tile_data = PackedInt32Array(589815, 0, 3, 655351, 0, 4, 589816, 65536, 
 [node name="Character" parent="Level" instance=ExtResource("6_7wfib")]
 position = Vector2(89, -104)
 scale = Vector2(0.75, 0.75)
+gravity = 1580
+max_fall_velocity = 700
+speed = 300.0
+acceleration = 0.1
+decceleration = 0.2
+dodge_time = 0.1
+dodge_speed = 700
+jump_force = -500.0
+jump_early_release = 0.2
+jump_stamina_cost = 10
 early_jump_allowance = 0.1
+coyote_time_allowance = 0.15
+max_jumps_enabled = 2
 apex_float_modifier = 0.6
 apex_threshold = 50
+max_wall_slide_velocity = 100
+wall_jump_time = 0.2
+wall_jump_x_speed = 700
+max_stamina = 100
+stamina_regen_rate_idle = 5
+stamina_regen_rate_walk = 2
+low_stamina_penalty = 0.4
+health_stamina_penalty = 0.5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

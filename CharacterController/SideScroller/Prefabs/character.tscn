@@ -73,7 +73,29 @@ animations = [{
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_6jrqh")
+speed = null
+jump_force = null
+jump_early_release = null
+jump_stamina_cost = null
+gravity = null
+acceleration = null
+decceleration = null
 early_jump_allowance = 0.05
+coyote_time_allowance = null
+apex_float_modifier = null
+apex_threshold = null
+max_fall_velocity = null
+dodge_time = null
+dodge_speed = null
+max_jumps_enabled = null
+max_wall_slide_velocity = null
+wall_jump_time = null
+wall_jump_x_speed = null
+max_stamina = null
+stamina_regen_rate_idle = null
+stamina_regen_rate_walk = null
+low_stamina_penalty = null
+health_stamina_penalty = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
