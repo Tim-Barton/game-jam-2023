@@ -1275,7 +1275,7 @@ rounded = true
 layout_mode = 2
 text = "Change Scene"
 
-[node name="StaminaBar" type="TextureProgressBar" parent="UI"]
+[node name="StaminaBar" type="TextureProgressBar" parent="UI" node_paths=PackedStringArray("character_node")]
 z_index = 1
 layout_mode = 0
 offset_left = 1001.0
@@ -1290,6 +1290,7 @@ nine_patch_stretch = true
 texture_progress = SubResource("MeshTexture_ugl5w")
 tint_progress = Color(0.564706, 0.388235, 0.0117647, 1)
 script = ExtResource("2_yg65s")
+character_node = NodePath("../../Level/Character")
 
 [node name="Level" type="Node" parent="."]
 
