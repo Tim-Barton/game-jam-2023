@@ -3,7 +3,6 @@ extends CharacterBody2D
 
 # Adjustables
 @export var controller : player_controller
-
 @export_group("Physics")
 @export var gravity = 1580
 @export var max_fall_velocity = 700
@@ -18,7 +17,7 @@ extends CharacterBody2D
 @export_group("Jump")
 @export var jump_force = -500.0
 @export var jump_early_release = 0.2
-@export var jump_stamina_cost = 5
+
 @export var early_jump_allowance = 0.1
 @export var coyote_time_allowance = 0.15
 @export var max_jumps_enabled = 2
@@ -31,6 +30,7 @@ extends CharacterBody2D
 @export var wall_jump_x_speed = 700
 
 @export_group("Stamina")
+@export var jump_stamina_cost = 5
 @export var max_stamina = 100
 @export var stamina_regen_rate_idle = 5
 @export var stamina_regen_rate_walk = 2
