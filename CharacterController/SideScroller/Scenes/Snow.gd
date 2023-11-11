@@ -1,6 +1,7 @@
 class_name Snow
 extends GPUParticles2D
 
+
 func _ready():
 	pass 
 
@@ -12,4 +13,4 @@ func _process(delta):
 
 func _on_value_value_changed(value):
 	self.amount = value
-	print(amount)
+
