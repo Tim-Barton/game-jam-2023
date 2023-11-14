@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://dkhnd58ia1m5t"]
+[gd_scene load_steps=21 format=3 uid="uid://dkhnd58ia1m5t"]
 
 [ext_resource type="Texture2D" uid="uid://belg1mxheka3q" path="res://CharacterController/SideScroller/GFX/2 Background/Day/1.png" id="1_xwcmc"]
 [ext_resource type="Texture2D" uid="uid://cbfip1qeil370" path="res://CharacterController/SideScroller/GFX/2 Background/Day/2.png" id="2_m0nrl"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/StaminaBar.gd" id="2_yg65s"]
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/Timer.gd" id="3_c53n5"]
 [ext_resource type="Texture2D" uid="uid://blq2vhoethqqx" path="res://CharacterController/SideScroller/GFX/2 Background/Day/5.png" id="3_dhewo"]
 [ext_resource type="Texture2D" uid="uid://t31lxiaq515g" path="res://CharacterController/SideScroller/GFX/3 Objects/3 Power lines/4.png" id="4_ccg22"]
 [ext_resource type="Texture2D" uid="uid://bwmrr0n1ls3g5" path="res://CharacterController/SideScroller/GFX/1 Tiles/Tileset.png" id="5_kdel5"]
@@ -1291,6 +1292,43 @@ texture_progress = SubResource("MeshTexture_ugl5w")
 tint_progress = Color(0.411765, 0.654902, 0, 1)
 script = ExtResource("2_yg65s")
 character_node = NodePath("../../Level/Character")
+
+[node name="Timer" type="Panel" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_c53n5")
+
+[node name="Minutes" type="Label" parent="UI/Timer"]
+z_index = 1
+layout_mode = 0
+offset_left = 948.0
+offset_top = 62.0
+offset_right = 988.0
+offset_bottom = 88.0
+text = "00:"
+horizontal_alignment = 2
+
+[node name="Seconds" type="Label" parent="UI/Timer"]
+z_index = 1
+layout_mode = 0
+offset_left = 972.0
+offset_top = 62.0
+offset_right = 1012.0
+offset_bottom = 88.0
+text = "00:"
+horizontal_alignment = 2
+
+[node name="Milliseconds" type="Label" parent="UI/Timer"]
+z_index = 1
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 62.0
+offset_right = 1040.0
+offset_bottom = 88.0
+text = "000
+"
+horizontal_alignment = 2
 
 [node name="Level" type="Node" parent="."]
 
