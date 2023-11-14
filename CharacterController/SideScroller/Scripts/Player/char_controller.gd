@@ -34,6 +34,7 @@ extends CharacterBody2D
 @export var stamina_regen_rate_idle = 5
 @export var stamina_regen_rate_walk = 2
 @export var low_stamina_penalty = 0.4
+@export var zero_stamina_time_penalty = 2
 
 # Internal Variables
 ## Presets
@@ -286,3 +287,9 @@ func _physics_process(delta):
 	_test_only_code()
 	
 	final_update()
+
+
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("collectable"):
+		body.Collect()

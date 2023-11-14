@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dkhnd58ia1m5t"]
+[gd_scene load_steps=23 format=3 uid="uid://dkhnd58ia1m5t"]
 
 [ext_resource type="Texture2D" uid="uid://belg1mxheka3q" path="res://CharacterController/SideScroller/GFX/2 Background/Day/1.png" id="1_xwcmc"]
 [ext_resource type="Texture2D" uid="uid://cbfip1qeil370" path="res://CharacterController/SideScroller/GFX/2 Background/Day/2.png" id="2_m0nrl"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://v4iodnn8fvq" path="res://CharacterController/SideScroller/Prefabs/character.tscn" id="6_7wfib"]
 [ext_resource type="Texture2D" uid="uid://cbl6yo36frga1" path="res://CharacterController/SideScroller/GFX/1 Tiles/KitchenTile16.png" id="6_ujt81"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scripts/UI/UI.gd" id="10_h7w1m"]
+[ext_resource type="PackedScene" uid="uid://d3s2ajibehkfx" path="res://CharacterController/SideScroller/Scenes/collectable_gold_coin.tscn" id="11_ihwc2"]
+[ext_resource type="PackedScene" uid="uid://dkc6emhyk4hld" path="res://CharacterController/SideScroller/Scenes/collectable_blue_coin.tscn" id="12_7ajfu"]
 
 [sub_resource type="Theme" id="Theme_mrgs0"]
 BoxContainer/constants/separation = 0
@@ -1365,6 +1367,16 @@ apex_float_modifier = 0.6
 apex_threshold = 50
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Gold_Coin" parent="." instance=ExtResource("11_ihwc2")]
+z_index = 1
+position = Vector2(174, 7)
+scale = Vector2(0.05, 0.05)
+
+[node name="Blue_Coin" parent="." instance=ExtResource("12_7ajfu")]
+z_index = 1
+position = Vector2(156, -219)
+scale = Vector2(0.2, 0.2)
 
 [connection signal="value_changed" from="UI/Panel/Adjusters/JumpForceContainer/JumpForce" to="UI" method="UpdateCharacterRate" binds= ["JumpForce"]]
 [connection signal="value_changed" from="UI/Panel/Adjusters/SpeedContainer/value" to="UI" method="UpdateCharacterRate" binds= ["Speed"]]
