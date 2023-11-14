@@ -17,7 +17,6 @@ extends CharacterBody2D
 @export_group("Jump")
 @export var jump_force = -500.0
 @export var jump_early_release = 0.2
-
 @export var early_jump_allowance = 0.1
 @export var coyote_time_allowance = 0.15
 @export var max_jumps_enabled = 2
@@ -35,7 +34,6 @@ extends CharacterBody2D
 @export var stamina_regen_rate_idle = 5
 @export var stamina_regen_rate_walk = 2
 @export var low_stamina_penalty = 0.4
-@export var health_stamina_penalty = 0.5
 
 # Internal Variables
 ## Presets
