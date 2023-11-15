@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dkhnd58ia1m5t"]
+[gd_scene load_steps=26 format=3 uid="uid://dkhnd58ia1m5t"]
 
 [ext_resource type="Texture2D" uid="uid://belg1mxheka3q" path="res://CharacterController/SideScroller/GFX/2 Background/Day/1.png" id="1_xwcmc"]
 [ext_resource type="Texture2D" uid="uid://cbfip1qeil370" path="res://CharacterController/SideScroller/GFX/2 Background/Day/2.png" id="2_m0nrl"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scripts/UI/UI.gd" id="10_h7w1m"]
 [ext_resource type="PackedScene" uid="uid://d3s2ajibehkfx" path="res://CharacterController/SideScroller/Scenes/collectable_gold_coin.tscn" id="11_ihwc2"]
 [ext_resource type="PackedScene" uid="uid://dkc6emhyk4hld" path="res://CharacterController/SideScroller/Scenes/collectable_blue_coin.tscn" id="12_7ajfu"]
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/CameraTracker.gd" id="14_dltny"]
+[ext_resource type="Texture2D" uid="uid://cqk2muuvxavd8" path="res://CharacterController/SideScroller/GFX/3 Objects/4 Collectables/gold coin.png" id="14_tltpd"]
 
 [sub_resource type="Theme" id="Theme_mrgs0"]
 BoxContainer/constants/separation = 0
@@ -999,6 +1001,12 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_52t2g")
 sources/1 = SubResource("TileSetAtlasSource_ax8rq")
 
+[sub_resource type="Curve2D" id="Curve2D_baqug"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -423, -184, -169.371, -6.49699, 169.371, 6.49699, -90, -208, 124.342, -117.408, -124.342, 117.408, 33, 76, -140.909, -14.8325, 140.909, 14.8325, 75, 270, 0, 0, 0, 0, 314, 138, 0, 0, 0, 0, 404, -80, 0, 0, 0, 0, 479, -212, 0, 0, 0, 0, 236, -65)
+}
+point_count = 8
+
 [node name="SideScrollerTestScene" type="Node2D"]
 
 [node name="UI" type="Control" parent="."]
@@ -1377,6 +1385,21 @@ scale = Vector2(0.05, 0.05)
 z_index = 1
 position = Vector2(156, -219)
 scale = Vector2(0.2, 0.2)
+
+[node name="CameraPath" type="Path2D" parent="."]
+z_index = 1
+curve = SubResource("Curve2D_baqug")
+
+[node name="CameraPathFollower" type="PathFollow2D" parent="CameraPath"]
+position = Vector2(-423, -184)
+rotation = -0.0719477
+
+[node name="Sprite2D" type="Sprite2D" parent="CameraPath/CameraPathFollower"]
+z_index = 1
+position = Vector2(47.0017, -24.7295)
+scale = Vector2(0.11236, 0.104876)
+texture = ExtResource("14_tltpd")
+script = ExtResource("14_dltny")
 
 [connection signal="value_changed" from="UI/Panel/Adjusters/JumpForceContainer/JumpForce" to="UI" method="UpdateCharacterRate" binds= ["JumpForce"]]
 [connection signal="value_changed" from="UI/Panel/Adjusters/SpeedContainer/value" to="UI" method="UpdateCharacterRate" binds= ["Speed"]]
