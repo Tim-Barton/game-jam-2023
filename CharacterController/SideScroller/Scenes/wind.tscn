@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://letdlc1ubrbe"]
+
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/Wind.gd" id="1_px3oq"]
+
+[sub_resource type="Gradient" id="Gradient_asv8v"]
+offsets = PackedFloat32Array(0, 0.458678, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.984547, 0.984547, 0.984547, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve2D" id="Curve2D_st5nn"]
+_data = {
+"points": PackedVector2Array(-113.122, -5.99323, 113.122, 5.99323, -529, -573, -103.383, 5.24408, 103.383, -5.24408, -373, -664, -104.882, -25.4712, 104.882, 25.4712, -192, -547, -144.587, -4.49492, 144.587, 4.49492, 9, -617)
+}
+point_count = 4
+
+[node name="Wind" type="Line2D"]
+script = ExtResource("1_px3oq")
+trail_color_gradient = SubResource("Gradient_asv8v")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(453, 255)
+scale = Vector2(1.68347, 0.734804)
+curve = SubResource("Curve2D_st5nn")

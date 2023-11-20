@@ -1,13 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://dkhnd58ia1m5t"]
+[gd_scene load_steps=28 format=3 uid="uid://dkhnd58ia1m5t"]
 
 [ext_resource type="Texture2D" uid="uid://belg1mxheka3q" path="res://CharacterController/SideScroller/GFX/2 Background/Day/1.png" id="1_xwcmc"]
-[ext_resource type="Texture2D" uid="uid://bus8p3vypv56l" path="res://CharacterController/SideScroller/Scenes/rain.png" id="2_ij16r"]
-[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/Snow.gd" id="2_kiv0q"]
+[ext_resource type="PackedScene" uid="uid://r44oitiuh0sh" path="res://CharacterController/SideScroller/Scenes/WeatherSystem.tscn" id="2_csoic"]
 [ext_resource type="Texture2D" uid="uid://cbfip1qeil370" path="res://CharacterController/SideScroller/GFX/2 Background/Day/2.png" id="2_m0nrl"]
-[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/DayNightCycle.gd" id="3_6psvk"]
 [ext_resource type="Texture2D" uid="uid://blq2vhoethqqx" path="res://CharacterController/SideScroller/GFX/2 Background/Day/5.png" id="3_dhewo"]
 [ext_resource type="Texture2D" uid="uid://t31lxiaq515g" path="res://CharacterController/SideScroller/GFX/3 Objects/3 Power lines/4.png" id="4_ccg22"]
-[ext_resource type="Texture2D" uid="uid://bkpc1kjm4t2xn" path="res://CharacterController/SideScroller/Scenes/daynightcycle-gradient-texture.tres" id="4_x84gu"]
 [ext_resource type="Texture2D" uid="uid://bwmrr0n1ls3g5" path="res://CharacterController/SideScroller/GFX/1 Tiles/Tileset.png" id="5_kdel5"]
 [ext_resource type="PackedScene" uid="uid://v4iodnn8fvq" path="res://CharacterController/SideScroller/Prefabs/character.tscn" id="6_7wfib"]
 [ext_resource type="Texture2D" uid="uid://cbl6yo36frga1" path="res://CharacterController/SideScroller/GFX/1 Tiles/KitchenTile16.png" id="6_ujt81"]
@@ -54,41 +51,6 @@ HSlider/icons/tick = null
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_3rfcx")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_44xpn")
 HSlider/styles/slider = SubResource("StyleBoxFlat_xanxn")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6yycd"]
-emission_shape = 3
-emission_box_extents = Vector3(150, 1, 1)
-particle_flag_disable_z = true
-direction = Vector3(-1, 1, 2.08165e-12)
-spread = 0.0
-gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
-initial_velocity_min = 150.0
-initial_velocity_max = 200.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-scale_max = 2.0
-color = Color(0.529412, 0.94902, 0.964706, 1)
-collision_mode = 1
-collision_friction = 1.0
-collision_bounce = 0.0
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_evyxp"]
-emission_shape = 3
-emission_box_extents = Vector3(200, 1, 1)
-particle_flag_disable_z = true
-direction = Vector3(-1, 1, 2.08165e-12)
-spread = 20.0
-gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
-initial_velocity_min = 50.0
-initial_velocity_max = 70.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-scale_min = 2.0
-scale_max = 4.0
-collision_mode = 1
-collision_friction = 1.0
-collision_bounce = 0.0
-collision_use_scale = true
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_22bwv"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, -7.4375, -8, -8)
@@ -1352,28 +1314,7 @@ text = "Change Scene"
 
 [node name="Level" type="Node" parent="."]
 
-[node name="Rain" type="GPUParticles2D" parent="Level"]
-position = Vector2(235, -272)
-scale = Vector2(4.65787, 10.223)
-amount = 200
-process_material = SubResource("ParticleProcessMaterial_6yycd")
-texture = ExtResource("2_ij16r")
-
-[node name="Snow" type="GPUParticles2D" parent="Level"]
-visible = false
-position = Vector2(-1, -292)
-scale = Vector2(5.36, 5.8)
-amount = 300
-process_material = SubResource("ParticleProcessMaterial_evyxp")
-lifetime = 2.0
-script = ExtResource("2_kiv0q")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="Level"]
-visible = false
-color = Color(0.380392, 0.286275, 0.839216, 1)
-script = ExtResource("3_6psvk")
-gradient = ExtResource("4_x84gu")
-INGAME_SPEED = 30.0
+[node name="WeatherSystem" parent="Level" instance=ExtResource("2_csoic")]
 
 [node name="Background" type="Node" parent="Level"]
 
