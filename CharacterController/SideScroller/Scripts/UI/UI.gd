@@ -49,4 +49,6 @@ func UpdateCharacterRate(NewValue : float, Adjuster : String):
 			CharacterController.set_timers()
 		"DodgeSpeed":
 			CharacterController.dodge_speed = NewValue
+		"SnowAmount":
+			CharacterController.snow_amount = NewValue
 	grab_focus()
