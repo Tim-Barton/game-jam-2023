@@ -1,14 +1,28 @@
+<<<<<<< HEAD
 [gd_scene load_steps=28 format=3 uid="uid://dkhnd58ia1m5t"]
+=======
+[gd_scene load_steps=41 format=3 uid="uid://dkhnd58ia1m5t"]
+>>>>>>> main
 
 [ext_resource type="Texture2D" uid="uid://belg1mxheka3q" path="res://CharacterController/SideScroller/GFX/2 Background/Day/1.png" id="1_xwcmc"]
 [ext_resource type="PackedScene" uid="uid://r44oitiuh0sh" path="res://CharacterController/SideScroller/Scenes/WeatherSystem.tscn" id="2_csoic"]
 [ext_resource type="Texture2D" uid="uid://cbfip1qeil370" path="res://CharacterController/SideScroller/GFX/2 Background/Day/2.png" id="2_m0nrl"]
+<<<<<<< HEAD
+=======
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/StaminaBar.gd" id="2_yg65s"]
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/DayNightCycle.gd" id="3_6psvk"]
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/Timer.gd" id="3_c53n5"]
+>>>>>>> main
 [ext_resource type="Texture2D" uid="uid://blq2vhoethqqx" path="res://CharacterController/SideScroller/GFX/2 Background/Day/5.png" id="3_dhewo"]
 [ext_resource type="Texture2D" uid="uid://t31lxiaq515g" path="res://CharacterController/SideScroller/GFX/3 Objects/3 Power lines/4.png" id="4_ccg22"]
 [ext_resource type="Texture2D" uid="uid://bwmrr0n1ls3g5" path="res://CharacterController/SideScroller/GFX/1 Tiles/Tileset.png" id="5_kdel5"]
 [ext_resource type="PackedScene" uid="uid://v4iodnn8fvq" path="res://CharacterController/SideScroller/Prefabs/character.tscn" id="6_7wfib"]
 [ext_resource type="Texture2D" uid="uid://cbl6yo36frga1" path="res://CharacterController/SideScroller/GFX/1 Tiles/KitchenTile16.png" id="6_ujt81"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scripts/UI/UI.gd" id="10_h7w1m"]
+[ext_resource type="PackedScene" uid="uid://d3s2ajibehkfx" path="res://CharacterController/SideScroller/Scenes/collectable_gold_coin.tscn" id="11_ihwc2"]
+[ext_resource type="PackedScene" uid="uid://dkc6emhyk4hld" path="res://CharacterController/SideScroller/Scenes/collectable_blue_coin.tscn" id="12_7ajfu"]
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/CameraTracker.gd" id="14_dltny"]
+[ext_resource type="Texture2D" uid="uid://cqk2muuvxavd8" path="res://CharacterController/SideScroller/GFX/3 Objects/4 Collectables/gold coin.png" id="14_tltpd"]
 
 [sub_resource type="Theme" id="Theme_mrgs0"]
 BoxContainer/constants/separation = 0
@@ -52,6 +66,46 @@ HSlider/styles/grabber_area = SubResource("StyleBoxFlat_3rfcx")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_44xpn")
 HSlider/styles/slider = SubResource("StyleBoxFlat_xanxn")
 
+<<<<<<< HEAD
+=======
+[sub_resource type="MeshTexture" id="MeshTexture_ugl5w"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6yycd"]
+emission_shape = 3
+emission_box_extents = Vector3(150, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(-1, 1, 2.08165e-12)
+spread = 0.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 2.0
+color = Color(0.529412, 0.94902, 0.964706, 1)
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_evyxp"]
+emission_shape = 3
+emission_box_extents = Vector3(200, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(-1, 1, 2.08165e-12)
+spread = 20.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+initial_velocity_min = 50.0
+initial_velocity_max = 70.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 4.0
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+>>>>>>> main
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_22bwv"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, -7.4375, -8, -8)
 
@@ -1032,6 +1086,12 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_52t2g")
 sources/1 = SubResource("TileSetAtlasSource_ax8rq")
 
+[sub_resource type="Curve2D" id="Curve2D_baqug"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -423, -184, -169.371, -6.49699, 169.371, 6.49699, -90, -208, 124.342, -117.408, -124.342, 117.408, 33, 76, -140.909, -14.8325, 140.909, 14.8325, 75, 270, 0, 0, 0, 0, 314, 138, 0, 0, 0, 0, 404, -80, 0, 0, 0, 0, 479, -212, 0, 0, 0, 0, 236, -65)
+}
+point_count = 8
+
 [node name="SideScrollerTestScene" type="Node2D"]
 
 [node name="UI" type="Control" parent="."]
@@ -1312,6 +1372,60 @@ rounded = true
 layout_mode = 2
 text = "Change Scene"
 
+[node name="StaminaBar" type="TextureProgressBar" parent="UI" node_paths=PackedStringArray("character_node")]
+z_index = 1
+layout_mode = 0
+offset_left = 1116.0
+offset_top = 328.0
+offset_right = 1144.0
+offset_bottom = 503.0
+tooltip_text = "Stamina"
+step = 0.01
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = SubResource("MeshTexture_ugl5w")
+tint_progress = Color(0.411765, 0.654902, 0, 1)
+script = ExtResource("2_yg65s")
+character_node = NodePath("../../Level/Character")
+
+[node name="Timer" type="Panel" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_c53n5")
+
+[node name="Minutes" type="Label" parent="UI/Timer"]
+z_index = 1
+layout_mode = 0
+offset_left = 948.0
+offset_top = 62.0
+offset_right = 988.0
+offset_bottom = 88.0
+text = "00:"
+horizontal_alignment = 2
+
+[node name="Seconds" type="Label" parent="UI/Timer"]
+z_index = 1
+layout_mode = 0
+offset_left = 972.0
+offset_top = 62.0
+offset_right = 1012.0
+offset_bottom = 88.0
+text = "00:"
+horizontal_alignment = 2
+
+[node name="Milliseconds" type="Label" parent="UI/Timer"]
+z_index = 1
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 62.0
+offset_right = 1040.0
+offset_bottom = 88.0
+text = "000
+"
+horizontal_alignment = 2
+
 [node name="Level" type="Node" parent="."]
 
 [node name="WeatherSystem" parent="Level" instance=ExtResource("2_csoic")]
@@ -1354,6 +1468,31 @@ apex_float_modifier = 0.6
 apex_threshold = 50
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Gold_Coin" parent="." instance=ExtResource("11_ihwc2")]
+z_index = 1
+position = Vector2(174, 7)
+scale = Vector2(0.05, 0.05)
+
+[node name="Blue_Coin" parent="." instance=ExtResource("12_7ajfu")]
+z_index = 1
+position = Vector2(156, -219)
+scale = Vector2(0.2, 0.2)
+
+[node name="CameraPath" type="Path2D" parent="."]
+z_index = 1
+curve = SubResource("Curve2D_baqug")
+
+[node name="CameraPathFollower" type="PathFollow2D" parent="CameraPath"]
+position = Vector2(-423, -184)
+rotation = -0.0719477
+
+[node name="Sprite2D" type="Sprite2D" parent="CameraPath/CameraPathFollower"]
+z_index = 1
+position = Vector2(47.0017, -24.7295)
+scale = Vector2(0.11236, 0.104876)
+texture = ExtResource("14_tltpd")
+script = ExtResource("14_dltny")
 
 [connection signal="value_changed" from="UI/Panel/Adjusters/JumpForceContainer/JumpForce" to="UI" method="UpdateCharacterRate" binds= ["JumpForce"]]
 [connection signal="value_changed" from="UI/Panel/Adjusters/SpeedContainer/value" to="UI" method="UpdateCharacterRate" binds= ["Speed"]]
