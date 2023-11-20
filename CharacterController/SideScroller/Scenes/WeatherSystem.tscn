@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://r44oitiuh0sh"]
+
+[ext_resource type="PackedScene" uid="uid://letdlc1ubrbe" path="res://CharacterController/SideScroller/Scenes/wind.tscn" id="1_iupbr"]
+[ext_resource type="Texture2D" uid="uid://bus8p3vypv56l" path="res://CharacterController/SideScroller/Scenes/rain.png" id="2_4vejg"]
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/DayNightCycle.gd" id="4_p4oxd"]
+[ext_resource type="Texture2D" uid="uid://bkpc1kjm4t2xn" path="res://CharacterController/SideScroller/Scenes/daynightcycle-gradient-texture.tres" id="5_jy7b8"]
+
+[sub_resource type="Gradient" id="Gradient_pqxmj"]
+offsets = PackedFloat32Array(0, 0.549587, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.975136, 0.979356, 0.99894, 1, 1, 1, 1, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qfwdb"]
+emission_shape = 3
+emission_box_extents = Vector3(150, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(-1, 1, 2.08165e-12)
+spread = 0.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 2.0
+color = Color(0.529412, 0.94902, 0.964706, 1)
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l8h2w"]
+emission_shape = 3
+emission_box_extents = Vector3(200, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(-1, 1, 2.08165e-12)
+spread = 20.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+initial_velocity_min = 50.0
+initial_velocity_max = 70.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 4.0
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[node name="WeatherSystem" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.380392, 0.286275, 0.839216, 1)
+script = ExtResource("4_p4oxd")
+gradient = ExtResource("5_jy7b8")
+INGAME_SPEED = 30.0
+
+[node name="Wind" parent="CanvasModulate" instance=ExtResource("1_iupbr")]
+visible = false
+trail_length = 0.5
+trail_color_gradient = SubResource("Gradient_pqxmj")
+
+[node name="Rain" type="GPUParticles2D" parent="CanvasModulate"]
+visible = false
+position = Vector2(235, -272)
+scale = Vector2(4.65787, 10.223)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_qfwdb")
+texture = ExtResource("2_4vejg")
+
+[node name="Snow" type="GPUParticles2D" parent="CanvasModulate"]
+visible = false
+position = Vector2(-1, -292)
+scale = Vector2(5.36, 5.8)
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_l8h2w")
+lifetime = 2.0
