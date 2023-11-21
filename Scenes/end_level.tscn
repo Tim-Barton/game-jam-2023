@@ -33,9 +33,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -65.5
-offset_top = -15.5
+offset_top = 151.5
 offset_right = 65.5
-offset_bottom = 15.5
+offset_bottom = 182.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Return to Scene"
@@ -45,11 +45,12 @@ script = ExtResource("2_2onf3")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 38.0
-offset_top = 71.0
-offset_right = 38.0
-offset_bottom = 97.0
+offset_left = 544.0
+offset_top = 87.0
+offset_right = -499.0
+offset_bottom = 113.0
 grow_horizontal = 2
+scale = Vector2(2, 2)
 text = "0.0"
 horizontal_alignment = 1
 script = ExtResource("3_vtmoe")
@@ -58,11 +59,12 @@ script = ExtResource("3_vtmoe")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 16.0
-offset_top = 114.0
-offset_right = 16.0
-offset_bottom = 140.0
+offset_left = -493.0
+offset_top = 215.0
+offset_right = -493.0
+offset_bottom = 241.0
 grow_horizontal = 2
+scale = Vector2(2, 2)
 text = "69"
 horizontal_alignment = 1
 
@@ -70,23 +72,26 @@ horizontal_alignment = 1
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 14.0
-offset_top = 165.0
-offset_right = 14.0
-offset_bottom = 191.0
+offset_left = -492.0
+offset_top = 350.0
+offset_right = -492.0
+offset_bottom = 376.0
 grow_horizontal = 2
+scale = Vector2(2, 2)
 text = "69"
 horizontal_alignment = 1
 
 [node name="Blue_Coin" parent="." instance=ExtResource("4_ltikv")]
-position = Vector2(549, 128)
+position = Vector2(505, 235)
+scale = Vector2(2, 2)
 
 [node name="Gold_Coin" parent="." instance=ExtResource("5_wf8la")]
-position = Vector2(551, 177)
+position = Vector2(511, 370)
+scale = Vector2(0.8, 0.8)
 
 [node name="Clock" type="Sprite2D" parent="."]
-position = Vector2(549, 86)
-scale = Vector2(0.05, 0.05)
+position = Vector2(501, 112)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("6_pe7qa")
 
 [connection signal="pressed" from="btnReturn" to="btnReturn" method="_on_pressed"]
