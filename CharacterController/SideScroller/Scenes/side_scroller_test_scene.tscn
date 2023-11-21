@@ -1381,6 +1381,7 @@ horizontal_alignment = 2
 [node name="Level" type="Node" parent="."]
 
 [node name="WeatherSystem" parent="Level" instance=ExtResource("2_csoic")]
+position = Vector2(-539, 1)
 
 [node name="Background" type="Node" parent="Level"]
 

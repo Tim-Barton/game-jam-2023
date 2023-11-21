@@ -39,9 +39,10 @@ func _recalculate_time():
 	if past_minute != minute:
 		past_minute = minute
 		if hour >= 10 and hour <= 12:
-			$Rain.visible = true
-		#else:
-			#$Rain.visible = false
+			$Rain.emitting = true
+			$Rain.visible = true	
+		else:
+			$Rain.emitting = false
 				
 		if hour >= 13 and hour <= 15:
 			$Snow.emitting = true
@@ -51,9 +52,13 @@ func _recalculate_time():
 			#$Snow.visible = false
 			
 		if hour >= 7 and hour <= 9:
-			var instance = sceneWind.instantiate()
-			add_child(instance)
-			instance.visible = true
+			$Wind.visible = true
+			$Wind.emitting = true
+		else:
+			$Wind.emitting = false
+			#var instance = sceneWind.instantiate()
+			#add_child(instance)
+			#instance.visible = true
 			#instance.reverse_direction = false
 			#instance.line_segments = 20
 			#instance.trail_length = 1.0
