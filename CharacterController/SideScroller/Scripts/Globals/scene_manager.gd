@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 enum TransitionTypes {dissolve, bluewave}
+var player_score : String = "0.0"
 
 func change_scene(target: String, transition_type: TransitionTypes) -> void:
 	match transition_type:

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://letdlc1ubrbe" path="res://CharacterController/SideScroller/Scenes/wind.tscn" id="1_iupbr"]
 [ext_resource type="Texture2D" uid="uid://bus8p3vypv56l" path="res://CharacterController/SideScroller/Scenes/rain.png" id="2_4vejg"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/DayNightCycle.gd" id="4_p4oxd"]
-[ext_resource type="Texture2D" uid="uid://bkpc1kjm4t2xn" path="res://CharacterController/SideScroller/Scenes/daynightcycle-gradient-texture.tres" id="5_jy7b8"]
+[ext_resource type="Texture2D" uid="uid://v38ysjqhtjef" path="res://CharacterController/SideScroller/Scenes/daynightcycle-gradient-texture.tres" id="5_jy7b8"]
 
 [sub_resource type="Gradient" id="Gradient_pqxmj"]
 offsets = PackedFloat32Array(0, 0.549587, 1)

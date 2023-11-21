@@ -1,10 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://dkhnd58ia1m5t"]
+[gd_scene load_steps=35 format=3 uid="uid://dkhnd58ia1m5t"]
 
 [ext_resource type="Texture2D" uid="uid://belg1mxheka3q" path="res://CharacterController/SideScroller/GFX/2 Background/Day/1.png" id="1_xwcmc"]
-[ext_resource type="PackedScene" path="res://CharacterController/SideScroller/Scenes/WeatherSystem.tscn" id="2_csoic"]
+[ext_resource type="PackedScene" uid="uid://r44oitiuh0sh" path="res://CharacterController/SideScroller/Scenes/WeatherSystem.tscn" id="2_csoic"]
 [ext_resource type="Texture2D" uid="uid://cbfip1qeil370" path="res://CharacterController/SideScroller/GFX/2 Background/Day/2.png" id="2_m0nrl"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/StaminaBar.gd" id="2_yg65s"]
-[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/Timer.gd" id="3_c53n5"]
 [ext_resource type="Texture2D" uid="uid://blq2vhoethqqx" path="res://CharacterController/SideScroller/GFX/2 Background/Day/5.png" id="3_dhewo"]
 [ext_resource type="Texture2D" uid="uid://t31lxiaq515g" path="res://CharacterController/SideScroller/GFX/3 Objects/3 Power lines/4.png" id="4_ccg22"]
 [ext_resource type="Texture2D" uid="uid://bwmrr0n1ls3g5" path="res://CharacterController/SideScroller/GFX/1 Tiles/Tileset.png" id="5_kdel5"]
@@ -20,9 +19,9 @@
 BoxContainer/constants/separation = 0
 VBoxContainer/constants/separation = 0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rfcx"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sy626"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44xpn"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mxo7"]
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -37,26 +36,26 @@ shadow_color = Color(0.262745, 0.0352941, 0.0941176, 0.705882)
 shadow_size = 4
 shadow_offset = Vector2(3, 3)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xanxn"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7p3hf"]
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
 
-[sub_resource type="SystemFont" id="SystemFont_k4y05"]
+[sub_resource type="SystemFont" id="SystemFont_tvy0f"]
 
 [sub_resource type="Theme" id="Theme_bd3vq"]
-default_font = SubResource("SystemFont_k4y05")
+default_font = SubResource("SystemFont_tvy0f")
 HSlider/constants/center_grabber = 0
 HSlider/constants/grabber_offset = 0
 HSlider/icons/grabber = null
 HSlider/icons/grabber_disabled = null
 HSlider/icons/grabber_highlight = null
 HSlider/icons/tick = null
-HSlider/styles/grabber_area = SubResource("StyleBoxFlat_3rfcx")
-HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_44xpn")
-HSlider/styles/slider = SubResource("StyleBoxFlat_xanxn")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_sy626")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_3mxo7")
+HSlider/styles/slider = SubResource("StyleBoxFlat_7p3hf")
 
 [sub_resource type="MeshTexture" id="MeshTexture_ugl5w"]
 
@@ -1347,7 +1346,6 @@ character_node = NodePath("../../Level/Character")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("3_c53n5")
 
 [node name="Minutes" type="Label" parent="UI/Timer"]
 z_index = 1

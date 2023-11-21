@@ -35,6 +35,7 @@ extends CharacterBody2D
 @export var stamina_regen_rate_walk = 2
 @export var low_stamina_penalty = 0.4
 @export var zero_stamina_time_penalty = 2
+@export var stamina_zero_penalty_time = 0.5
 
 # Internal Variables
 ## Presets
@@ -49,6 +50,7 @@ var coyote_node : Timer
 var dodge_node : Timer
 var controller_node : Node
 var wall_jump_node : Timer
+var stamina_penalty_node : Timer
 
 ## Enums
 enum PlayerStates {Idle, Walk, Jumping, Falling, Landed}
@@ -71,6 +73,7 @@ var character_velocity : Vector2
 var was_on_floor : bool
 var cur_jump_count = 0
 var cur_stamina = 0
+var player_alive = true
 
 func _ready():
 	var new_jump_timer := Timer.new()
@@ -88,6 +91,10 @@ func _ready():
 	var new_wall_jump_timer := Timer.new()
 	new_wall_jump_timer.name = "wall_jump_time"
 	add_child(new_wall_jump_timer)
+
+	var stamina_zero_penalty_timer := Timer.new()
+	stamina_zero_penalty_timer.name = "stamina_zero_penalty_timer"
+	add_child(stamina_zero_penalty_timer)
 	
 	animation_node = get_node("animations")
 	jump_allowance_node = get_node("jump_allowance")
@@ -95,6 +102,7 @@ func _ready():
 	dodge_node = get_node("dodge_time")
 	controller_node = get_node("controller_container")
 	wall_jump_node = get_node("wall_jump_time")
+	stamina_penalty_node = get_node("stamina_zero_penalty_timer")
 	
 	set_timers()
 	
@@ -114,6 +122,8 @@ func set_timers():
 	dodge_node.one_shot = true
 	wall_jump_node.wait_time = wall_jump_time
 	wall_jump_node.one_shot = true
+	stamina_penalty_node.wait_time = stamina_zero_penalty_time
+	stamina_penalty_node.one_shot = true
 
 func set_controller(input_controller: player_controller) -> void:
 	#Remove Previous Controllers
@@ -148,6 +158,12 @@ func is_just_released(input_check: String) -> bool:
 			return true
 	return false
 
+func stamina_penalty(stamina_payment : int) -> void:
+	cur_stamina = clamp(cur_stamina-stamina_payment,0,max_stamina)
+	if cur_stamina <= 1:
+		if stamina_penalty_node.is_stopped():
+			stamina_penalty_node.start()
+
 func character_jump(increase_jump_count : int, early_release : bool = false) -> float:
 	var calc_jump_force = jump_force
 	if early_release:
@@ -155,7 +171,8 @@ func character_jump(increase_jump_count : int, early_release : bool = false) -> 
 	else:
 		if cur_stamina < jump_stamina_cost:
 			calc_jump_force = calc_jump_force * low_stamina_penalty
-		cur_stamina = clamp(cur_stamina-jump_stamina_cost,0,max_stamina)
+		stamina_penalty(jump_stamina_cost)
+		#cur_stamina = clamp(cur_stamina-jump_stamina_cost,0,max_stamina)
 	
 	cur_jump_count += increase_jump_count
 	return calc_jump_force
@@ -267,10 +284,11 @@ func _test_only_code() -> void:
 		set_controller(human_controller.new(self))
 
 func player_final(delta : float) -> void:
-	if player_state == PlayerStates.Idle:
-		cur_stamina = clamp(cur_stamina+stamina_regen_rate_idle*delta,0,max_stamina)
-	elif player_state == PlayerStates.Walk:
-		cur_stamina = clamp(cur_stamina+stamina_regen_rate_walk*delta,0,max_stamina)
+	if stamina_penalty_node.is_stopped():
+		if player_state == PlayerStates.Idle:
+			cur_stamina = clamp(cur_stamina+stamina_regen_rate_idle*delta,0,max_stamina)
+		elif player_state == PlayerStates.Walk:
+			cur_stamina = clamp(cur_stamina+stamina_regen_rate_walk*delta,0,max_stamina)
 	
 func _physics_process(delta):
 	get_character_input()

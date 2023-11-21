@@ -40,13 +40,15 @@ func _recalculate_time():
 		past_minute = minute
 		if hour >= 10 and hour <= 12:
 			$Rain.visible = true
-		else:
-			$Rain.visible = false
+		#else:
+			#$Rain.visible = false
 				
 		if hour >= 13 and hour <= 15:
+			$Snow.emitting = true
 			$Snow.visible = true
 		else: 
-			$Snow.visible = false
+			$Snow.emitting = false
+			#$Snow.visible = false
 			
 		if hour >= 7 and hour <= 9:
 			var instance = sceneWind.instantiate()
@@ -59,8 +61,8 @@ func _recalculate_time():
 			#instance.random_y_offset = 1.0
 
 			
-		time_tick.emit(day, hour, minute)
-		print("Day: ", day, "Hour: ", hour, "Min: ", minute)
+		#time_tick.emit(day, hour, minute)
+		#print("Day: ", day, "Hour: ", hour, "Min: ", minute)
 
 
 func _on_value_value_changed(value):
