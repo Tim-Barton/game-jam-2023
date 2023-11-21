@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://6dfntrn57bcs" path="res://CharacterController/SideScroller/GFX/3 Objects/4 Collectables/blue coin.png" id="1_q6wr6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xt1b3"]
-radius = 99.0
+radius = 14.0
 
 [node name="Blue_Coin" type="StaticBody2D" groups=["collectable"]]
 collision_layer = 2
@@ -12,10 +12,9 @@ collision_mask = 2
 script = ExtResource("1_86ly1")
 
 [node name="BlueCoin" type="Sprite2D" parent="."]
-position = Vector2(245, 223)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("1_q6wr6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(245, 224)
 scale = Vector2(1, 1.2)
 shape = SubResource("CircleShape2D_xt1b3")

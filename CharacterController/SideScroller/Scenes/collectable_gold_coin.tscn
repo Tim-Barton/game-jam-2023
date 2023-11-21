@@ -4,17 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://cqk2muuvxavd8" path="res://CharacterController/SideScroller/GFX/3 Objects/4 Collectables/gold coin.png" id="1_giklr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4bisw"]
-radius = 201.01
+radius = 20.0
 
 [node name="Gold_Coin" type="StaticBody2D" groups=["collectable"]]
+scale = Vector2(0.4, 0.4)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_g7xlr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(313, 312)
+scale = Vector2(0.2, 0.2)
 shape = SubResource("CircleShape2D_4bisw")
 
 [node name="GoldCoin" type="Sprite2D" parent="."]
-position = Vector2(315, 313)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_giklr")
