@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://vpfvee2ipil5"]
+[gd_scene load_steps=7 format=3 uid="uid://om605226ul1"]
 
 [ext_resource type="Texture2D" uid="uid://428l51n27rnf" path="res://CharacterController/SideScroller/GFX/2 Background/Overlay.png" id="1_ctkap"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scripts/Testing/TestScene_UI.gd" id="2_2onf3"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scripts/UI/lblResult.gd" id="3_vtmoe"]
+[ext_resource type="PackedScene" uid="uid://dkc6emhyk4hld" path="res://CharacterController/SideScroller/Scenes/collectable_blue_coin.tscn" id="4_ltikv"]
+[ext_resource type="PackedScene" uid="uid://d3s2ajibehkfx" path="res://CharacterController/SideScroller/Scenes/collectable_gold_coin.tscn" id="5_wf8la"]
+[ext_resource type="Texture2D" uid="uid://clkxq03fjevdw" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/clock.png" id="6_pe7qa"]
 
 [node name="TestScene" type="Control"]
 layout_mode = 3
@@ -38,25 +41,52 @@ grow_vertical = 2
 text = "Return to Scene"
 script = ExtResource("2_2onf3")
 
-[node name="lblLevelComplete" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 50.0
-offset_bottom = 86.0
-grow_horizontal = 2
-text = "You survived for: "
-horizontal_alignment = 1
-
 [node name="lblResult" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 80.0
-offset_bottom = 106.0
+offset_left = 38.0
+offset_top = 71.0
+offset_right = 38.0
+offset_bottom = 97.0
 grow_horizontal = 2
 text = "0.0"
 horizontal_alignment = 1
 script = ExtResource("3_vtmoe")
+
+[node name="lblResult2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 114.0
+offset_right = 16.0
+offset_bottom = 140.0
+grow_horizontal = 2
+text = "69"
+horizontal_alignment = 1
+
+[node name="lblResult3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 14.0
+offset_top = 165.0
+offset_right = 14.0
+offset_bottom = 191.0
+grow_horizontal = 2
+text = "69"
+horizontal_alignment = 1
+
+[node name="Blue_Coin" parent="." instance=ExtResource("4_ltikv")]
+position = Vector2(549, 128)
+
+[node name="Gold_Coin" parent="." instance=ExtResource("5_wf8la")]
+position = Vector2(551, 177)
+
+[node name="Clock" type="Sprite2D" parent="."]
+position = Vector2(549, 86)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("6_pe7qa")
 
 [connection signal="pressed" from="btnReturn" to="btnReturn" method="_on_pressed"]
