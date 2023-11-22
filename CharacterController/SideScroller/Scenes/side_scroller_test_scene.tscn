@@ -1416,7 +1416,6 @@ layer_0/tile_data = PackedInt32Array(589815, 0, 3, 655351, 0, 4, 589816, 65536, 
 [node name="Character" parent="Level" instance=ExtResource("6_7wfib")]
 position = Vector2(89, -104)
 scale = Vector2(0.75, 0.75)
-early_jump_allowance = 0.1
 apex_float_modifier = 0.6
 apex_threshold = 50
 
