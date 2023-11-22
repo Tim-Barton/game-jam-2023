@@ -221,10 +221,12 @@ func get_character_input():
 	
 	#Apply Accelerations
 	#Both Dodging and wall jumps are set character X speeds while they are in control
+
+	var tile_acceleration_modifier = get_tile_mod("friction_mod", 1, true)
 	if dodge_node.is_stopped() && wall_jump_node.is_stopped():
-		var adjust_rate = acceleration
+		var adjust_rate = acceleration * tile_acceleration_modifier
 		if direction != clamp(velocity.x,-1,1):
-			adjust_rate = decceleration
+			adjust_rate = decceleration * tile_acceleration_modifier
 			
 		var _velocity = velocity.x
 		character_velocity.x = lerp(_velocity, direction * speed,adjust_rate)
@@ -237,6 +239,18 @@ func get_character_input():
 			dodge_velocity = dodge_velocity * -1
 		character_velocity.x = dodge_velocity
 		dodge_node.start()
+
+func get_tile_mod(mod_name : String, default : Variant, TileBelow : bool = false) -> Variant:
+	var TileBelowPos : Vector2 = Vector2(position.x, position.y)
+	if TileBelow:
+		TileBelowPos = Vector2(position.x, position.y + 10)
+		
+	var result = World.get_custom_data(TileBelowPos,mod_name)
+	LevelDirector.DebugMessage(str(result))
+	if result:
+		return result
+	else:
+		return default
 
 func update_player_state():
 	if is_on_floor():

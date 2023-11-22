@@ -33,6 +33,9 @@ func _ready():
 	TimeTarget = LevelDirector.player_score
 	BlueCoinTarget = LevelDirector.blue_coins
 	YellowCoinTarget = LevelDirector.yellow_coins
+	
+	if TimeTarget > 30:
+		TimeInterval = TimeTarget / 45
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -54,7 +57,7 @@ func _process(delta):
 					if YellowCoinCount >= YellowCoinTarget:
 						YellowCoinCount = YellowCoinTarget
 	
-	$lblResult.text = str(TimeCount)
+	$lblResult.text = str(round_to_dec(TimeCount,1))
 	$lblResult2.text = str(BlueCoinCount)
 	$lblResult3.text = str(YellowCoinCount)
 	
@@ -63,4 +66,5 @@ func _process(delta):
 		#TODO: Calculate numeric score and player name
 		SilentWolf.Scores.save_score("test", 100)
 	
-
+func round_to_dec(num, digit):
+	return round(num * pow(10.0, digit)) / pow(10.0, digit)

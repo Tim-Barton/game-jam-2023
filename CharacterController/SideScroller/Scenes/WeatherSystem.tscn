@@ -46,14 +46,12 @@ collision_use_scale = true
 color = Color(0.380392, 0.286275, 0.839216, 1)
 script = ExtResource("4_p4oxd")
 gradient = ExtResource("5_jy7b8")
-INGAME_SPEED = 30.0
 
 [node name="Wind" parent="CanvasModulate" instance=ExtResource("3_a5cx3")]
 position = Vector2(190, 302)
 scale = Vector2(9.73676, 3.81652)
 
 [node name="Rain" type="GPUParticles2D" parent="CanvasModulate"]
-visible = false
 position = Vector2(235, -272)
 scale = Vector2(9.25787, 10.223)
 amount = 200
@@ -61,7 +59,6 @@ process_material = SubResource("ParticleProcessMaterial_qfwdb")
 texture = ExtResource("2_4vejg")
 
 [node name="Snow" type="GPUParticles2D" parent="CanvasModulate"]
-visible = false
 position = Vector2(-1, -292)
 scale = Vector2(10, 5.8)
 amount = 300
