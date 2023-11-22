@@ -10,6 +10,7 @@ var msec: int = 0
 
 var level_countout : Timer
 var end_level : bool = false
+var change_level : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,14 +20,6 @@ func _ready():
 	level_countout = get_node("level_countout")
 	level_countout.wait_time = level_countout_seconds
 	level_countout.one_shot = true
-	SilentWolf.configure({
-		"api_key": "6NW2Oigo5P4Zb8GYCZBMl6jN2I3ug4pn3Ktr2FGk",
-		"game_id": "GameJam2023",
-		"log_level": 1
-	})
-	SilentWolf.configure_scores({
-		"open_scene_on_close": "res://Scenes/ClimbingLevel.tscn"
-	})
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta) -> void:
@@ -37,11 +30,12 @@ func _process(delta) -> void:
 		minutes = fmod(time, 3600) / 60
 	else:
 		if !end_level:
-			SceneManager.player_score = get_time_formatted()
+			LevelDirector.player_score = (minutes * 60) + seconds
 			level_countout.start()
 			end_level = true
 		else:
-			if level_countout.is_stopped():
+			if level_countout.is_stopped() && not change_level:
+				change_level = true
 				SceneManager.change_scene("res://Scenes/end_level.tscn", SceneManager.TransitionTypes.dissolve)
 		
 	

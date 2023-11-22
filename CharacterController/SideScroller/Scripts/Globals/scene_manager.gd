@@ -1,19 +1,24 @@
 extends CanvasLayer
 
 enum TransitionTypes {dissolve, bluewave}
-var player_score : String = "0.0"
+var Transitioning : bool = false
 
 func change_scene(target: String, transition_type: TransitionTypes) -> void:
-	match transition_type:
-		TransitionTypes.dissolve:
-			$AnimationPlayer.play("dissolve")
-			await $AnimationPlayer.animation_finished
-			get_tree().change_scene_to_file(target)
-			$AnimationPlayer.play_backwards("dissolve")
-		TransitionTypes.bluewave:
-			$AnimationPlayer.play("blue_wave")
-			await $AnimationPlayer.animation_finished
-			get_tree().change_scene_to_file(target)
-			$AnimationPlayer.play("blue_wave_out")
-		_:
-			pass
+	if not Transitioning:
+		match transition_type:
+			TransitionTypes.dissolve:
+				Transitioning = true
+				$AnimationPlayer.play("dissolve")
+				await $AnimationPlayer.animation_finished
+				get_tree().change_scene_to_file(target)
+				$AnimationPlayer.play("dissolve_out")
+				Transitioning = false
+			TransitionTypes.bluewave:
+				Transitioning = true
+				$AnimationPlayer.play("blue_wave")
+				await $AnimationPlayer.animation_finished
+				get_tree().change_scene_to_file(target)
+				$AnimationPlayer.play("blue_wave_out")
+				Transitioning = false
+			_:
+				pass

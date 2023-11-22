@@ -533,7 +533,7 @@ sources/0 = SubResource("TileSetAtlasSource_jsr68")
 [sub_resource type="MeshTexture" id="MeshTexture_8na55"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rrlme"]
-size = Vector2(941, 51)
+size = Vector2(1200, 51)
 
 [node name="ClimbingLevel" type="Node2D"]
 
@@ -647,11 +647,11 @@ scale = Vector2(1.25, 1.25)
 texture = ExtResource("5_1kvm3")
 
 [node name="Deathbar" type="Area2D" parent="LevelDirector/Camera2D"]
-position = Vector2(-463, 262)
+position = Vector2(-486, 286)
 script = ExtResource("5_uwo3c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelDirector/Camera2D/Deathbar"]
-position = Vector2(460.5, 15.5)
+position = Vector2(460, 15.5)
 shape = SubResource("RectangleShape2D_rrlme")
 
 [node name="CameraDirector" type="Node" parent="LevelDirector" node_paths=PackedStringArray("camera_node", "target_node")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://hf0jvf2h11kj"]
+[gd_scene load_steps=9 format=3 uid="uid://hf0jvf2h11kj"]
 
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scripts/Globals/scene_manager.gd" id="1_nbixb"]
 [ext_resource type="Texture2D" uid="uid://bgg5kpk56vt7r" path="res://CharacterController/SideScroller/GFX/Transitions/BlueOval.png" id="2_rp6lj"]
@@ -213,10 +213,25 @@ tracks/0/path = NodePath("dissolve:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kgid6"]
+resource_name = "dissolve_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dissolve:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rmttc"]
@@ -224,7 +239,8 @@ _data = {
 "RESET": SubResource("Animation_sux8d"),
 "blue_wave": SubResource("Animation_rv16f"),
 "blue_wave_out": SubResource("Animation_t41ws"),
-"dissolve": SubResource("Animation_whwan")
+"dissolve": SubResource("Animation_whwan"),
+"dissolve_out": SubResource("Animation_kgid6")
 }
 
 [node name="scene_transition" type="CanvasLayer"]
@@ -270,8 +286,8 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -100.0
-offset_right = 1168.0
+offset_left = -60.0
+offset_right = 1208.0
 offset_bottom = 648.0
 grow_horizontal = 0
 mouse_filter = 2

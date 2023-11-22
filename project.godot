@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SceneManager="*res://CharacterController/SideScroller/Prefabs/scene_manager.tscn"
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+LevelDirector="*res://CharacterController/SideScroller/Scripts/Globals/level_director.gd"
 
 [dotnet]
 

@@ -182,7 +182,7 @@ func get_character_input():
 	character_velocity.y = velocity.y
 	
 	# Handle Jump.
-	if is_just_released("jump") && velocity.y < 0:
+	if is_just_released("jump") && velocity.y < 0  && cur_jump_count < (max_jumps_enabled):
 		character_velocity.y = character_jump(0,true)
 		
 	if is_just_pressed("jump"):
