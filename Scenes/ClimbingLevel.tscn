@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://dssxe72x8lvg7"]
 
-[ext_resource type="PackedScene" path="res://CharacterController/SideScroller/Scenes/WeatherSystem.tscn" id="1_4n1f5"]
+[ext_resource type="PackedScene" uid="uid://r44oitiuh0sh" path="res://CharacterController/SideScroller/Scenes/WeatherSystem.tscn" id="1_4n1f5"]
 [ext_resource type="Texture2D" uid="uid://b8g832tva4kns" path="res://GFX/Level/BaseTileset2.png" id="1_7kl7l"]
 [ext_resource type="PackedScene" uid="uid://v4iodnn8fvq" path="res://CharacterController/SideScroller/Prefabs/character.tscn" id="2_wt1p3"]
 [ext_resource type="Texture2D" uid="uid://xdgyu4iwgio6" path="res://GFX/Level/Sky.png" id="3_jvqiv"]

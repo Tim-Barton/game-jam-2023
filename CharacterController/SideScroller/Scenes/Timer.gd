@@ -19,6 +19,14 @@ func _ready():
 	level_countout = get_node("level_countout")
 	level_countout.wait_time = level_countout_seconds
 	level_countout.one_shot = true
+	SilentWolf.configure({
+		"api_key": "6NW2Oigo5P4Zb8GYCZBMl6jN2I3ug4pn3Ktr2FGk",
+		"game_id": "GameJam2023",
+		"log_level": 1
+	})
+	SilentWolf.configure_scores({
+		"open_scene_on_close": "res://Scenes/ClimbingLevel.tscn"
+	})
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta) -> void:

@@ -3,8 +3,9 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	#Currently getting an error, maybe cos there's less than 10 scores available
+	#var sw_result: Dictionary = await SilentWolf.Scores.get_scores().sw_get_scores_complete
+	#print("Scores: " + str(sw_result.scores))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
