@@ -54,7 +54,7 @@ func _recalculate_time():
 			$Wind.emitting = true
 		else:
 			$Wind.emitting = false
-	print("Day: ", day, "Hour: ", hour, "Min: ", minute)
+
 
 func _on_value_value_changed(value):
 	INGAME_SPEED = value
