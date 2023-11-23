@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3s2ajibehkfx"]
 
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/collectable_gold_coin.gd" id="1_g7xlr"]
-[ext_resource type="Texture2D" uid="uid://cqk2muuvxavd8" path="res://CharacterController/SideScroller/GFX/3 Objects/4 Collectables/gold coin.png" id="1_giklr"]
+[ext_resource type="Texture2D" uid="uid://b3do4cihxhymq" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_gold_coin.png" id="2_wpq3m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4bisw"]
-radius = 20.0
+radius = 150.52
 
 [node name="Gold_Coin" type="StaticBody2D" groups=["collectable"]]
 scale = Vector2(0.4, 0.4)
@@ -12,10 +12,10 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_g7xlr")
 
+[node name="SmallGoldCoin" type="Sprite2D" parent="."]
+scale = Vector2(1, 1)
+texture = ExtResource("2_wpq3m")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.2, 0.2)
 shape = SubResource("CircleShape2D_4bisw")
-
-[node name="GoldCoin" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_giklr")
