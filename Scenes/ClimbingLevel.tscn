@@ -924,9 +924,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -130.0
+offset_left = -156.0
 offset_top = 10.0
-offset_right = -10.0
+offset_right = -36.0
 offset_bottom = 36.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -937,19 +937,49 @@ level_countout_seconds = 2
 character_node = NodePath("../../../../Level/Character")
 
 [node name="Clock" type="Sprite2D" parent="LevelDirector/Camera2D/UI"]
-position = Vector2(827, 22)
+position = Vector2(904.999, 22)
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("6_e0kdm")
 
 [node name="GoldCoin" type="Sprite2D" parent="LevelDirector/Camera2D/UI"]
-position = Vector2(827, 51)
+position = Vector2(904, 51)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("7_4trhl")
 
 [node name="BlueCoin" type="Sprite2D" parent="LevelDirector/Camera2D/UI"]
-position = Vector2(827, 80)
+position = Vector2(904, 80)
 scale = Vector2(0.09, 0.09)
 texture = ExtResource("9_3r5nb")
+
+[node name="GoldCoins" type="Label" parent="LevelDirector/Camera2D/UI"]
+visibility_layer = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -156.0
+offset_top = 40.0
+offset_right = -36.0
+offset_bottom = 66.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "0"
+horizontal_alignment = 2
+
+[node name="BlueCoins" type="Label" parent="LevelDirector/Camera2D/UI"]
+visibility_layer = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -156.0
+offset_top = 69.0
+offset_right = -36.0
+offset_bottom = 95.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "0"
+horizontal_alignment = 2
 
 [node name="WeatherSystem" parent="LevelDirector/Camera2D" instance=ExtResource("1_4n1f5")]
 visible = false
