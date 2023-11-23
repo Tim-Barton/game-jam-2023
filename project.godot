@@ -28,3 +28,9 @@ project/assembly_name="Game-jam-2023"
 [editor]
 
 movie_writer/movie_file="/Users/dustyschofield/screenrecordings/snip.avi"
+
+[rendering]
+
+environment/ssao/quality=4
+environment/ssil/quality=4
+environment/screen_space_reflection/roughness_quality=3

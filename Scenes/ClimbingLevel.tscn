@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dssxe72x8lvg7"]
+[gd_scene load_steps=22 format=3 uid="uid://dssxe72x8lvg7"]
 
 [ext_resource type="PackedScene" uid="uid://r44oitiuh0sh" path="res://CharacterController/SideScroller/Scenes/WeatherSystem.tscn" id="1_4n1f5"]
 [ext_resource type="Texture2D" uid="uid://b8g832tva4kns" path="res://GFX/Level/BaseTileset2.png" id="1_7kl7l"]
@@ -10,11 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://sscrbnanlaco" path="res://GFX/Level/BG-Mountain.png" id="4_y820s"]
 [ext_resource type="Texture2D" uid="uid://cnb8264cwegwa" path="res://GFX/Level/BG-Snow.png" id="5_1kvm3"]
 [ext_resource type="Script" path="res://Scripts/Deathbar.gd" id="5_uwo3c"]
-[ext_resource type="Texture2D" uid="uid://clkxq03fjevdw" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/clock.png" id="6_e0kdm"]
-[ext_resource type="Texture2D" uid="uid://cqk2muuvxavd8" path="res://CharacterController/SideScroller/GFX/3 Objects/4 Collectables/gold coin.png" id="7_4trhl"]
-[ext_resource type="Texture2D" uid="uid://6dfntrn57bcs" path="res://CharacterController/SideScroller/GFX/3 Objects/4 Collectables/blue coin.png" id="9_3r5nb"]
+[ext_resource type="Texture2D" uid="uid://b3do4cihxhymq" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_gold_coin.png" id="8_l052f"]
+[ext_resource type="Texture2D" uid="uid://dbncb0mr1wwn" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_blue_coin.png" id="9_67d3r"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/StaminaBar.gd" id="9_hclk4"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/Timer.gd" id="10_dammo"]
+[ext_resource type="Texture2D" uid="uid://bp00xfecsafyi" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_clock.png" id="10_hss5m"]
+[ext_resource type="PackedScene" uid="uid://d3s2ajibehkfx" path="res://CharacterController/SideScroller/Scenes/collectable_gold_coin.tscn" id="16_uiuy6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jsr68"]
 resource_name = "Snowscape"
@@ -918,16 +919,21 @@ tint_progress = Color(0.411765, 0.654902, 0, 1)
 script = ExtResource("9_hclk4")
 character_node = NodePath("../../../../Level/Character")
 
+[node name="SmallClock" type="Sprite2D" parent="LevelDirector/Camera2D/UI"]
+position = Vector2(889, 37)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("10_hss5m")
+
 [node name="Minutes" type="Label" parent="LevelDirector/Camera2D/UI" node_paths=PackedStringArray("character_node")]
 visibility_layer = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -156.0
-offset_top = 10.0
-offset_right = -36.0
-offset_bottom = 36.0
+offset_left = -178.0
+offset_top = 23.0
+offset_right = -58.0
+offset_bottom = 49.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "00:"
@@ -936,20 +942,10 @@ script = ExtResource("10_dammo")
 level_countout_seconds = 2
 character_node = NodePath("../../../../Level/Character")
 
-[node name="Clock" type="Sprite2D" parent="LevelDirector/Camera2D/UI"]
-position = Vector2(904.999, 22)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("6_e0kdm")
-
-[node name="GoldCoin" type="Sprite2D" parent="LevelDirector/Camera2D/UI"]
-position = Vector2(904, 51)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("7_4trhl")
-
-[node name="BlueCoin" type="Sprite2D" parent="LevelDirector/Camera2D/UI"]
-position = Vector2(904, 80)
-scale = Vector2(0.09, 0.09)
-texture = ExtResource("9_3r5nb")
+[node name="SmallGoldCoin" type="Sprite2D" parent="LevelDirector/Camera2D/UI"]
+position = Vector2(889, 80)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_l052f")
 
 [node name="GoldCoins" type="Label" parent="LevelDirector/Camera2D/UI"]
 visibility_layer = 2
@@ -957,14 +953,19 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -156.0
-offset_top = 40.0
-offset_right = -36.0
-offset_bottom = 66.0
+offset_left = -182.0
+offset_top = 67.0
+offset_right = -62.0
+offset_bottom = 93.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "0"
 horizontal_alignment = 2
+
+[node name="SmallBlueCoin" type="Sprite2D" parent="LevelDirector/Camera2D/UI"]
+position = Vector2(889, 130)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_67d3r")
 
 [node name="BlueCoins" type="Label" parent="LevelDirector/Camera2D/UI"]
 visibility_layer = 2
@@ -972,10 +973,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -156.0
-offset_top = 69.0
-offset_right = -36.0
-offset_bottom = 95.0
+offset_left = -180.0
+offset_top = 118.0
+offset_right = -60.0
+offset_bottom = 144.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "0"
@@ -1021,5 +1022,11 @@ shake_strength = 25.0
 shake_decay_rate = 0.0
 noise_shake_speed = 0.2
 noise_shake_strength = 0.0
+
+[node name="Gold_Coin" parent="." instance=ExtResource("16_uiuy6")]
+position = Vector2(-282, 172)
+
+[node name="Gold_Coin2" parent="." instance=ExtResource("16_uiuy6")]
+position = Vector2(-103, 171)
 
 [connection signal="body_entered" from="LevelDirector/Camera2D/Deathbar" to="LevelDirector/Camera2D/Deathbar" method="_on_body_entered"]
