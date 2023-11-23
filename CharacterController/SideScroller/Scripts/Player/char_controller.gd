@@ -11,8 +11,8 @@ extends CharacterBody2D
 @export var speed = 300.0
 @export var acceleration = 0.1
 @export var decceleration = 0.2
-@export var dodge_time = 0.1
-@export var dodge_speed = 700
+@export var dash_time = 0.1
+@export var dash_speed = 700
 
 @export_group("Jump")
 @export var jump_force = -500.0
@@ -36,6 +36,7 @@ extends CharacterBody2D
 @export var low_stamina_penalty = 0.4
 @export var zero_stamina_time_penalty = 2
 @export var stamina_zero_penalty_time = 0.5
+@export var dash_stamina_cost = 5
 
 # Internal Variables
 ## Presets
@@ -47,7 +48,7 @@ const char_slope_angle = deg_to_rad(46)
 var animation_node : AnimatedSprite2D
 var jump_allowance_node : Timer
 var coyote_node : Timer
-var dodge_node : Timer
+var dash_node : Timer
 var controller_node : Node
 var wall_jump_node : Timer
 var stamina_penalty_node : Timer
@@ -60,7 +61,7 @@ var input_dict = {
 	"left": false,
 	"right": false,
 	"jump": false,
-	"dodge": false,
+	"dash": false,
 	"release_control": false
 }
 var previous_input = {}
@@ -84,9 +85,9 @@ func _ready():
 	new_coyote_timer.name = "coyote_allowance"
 	add_child(new_coyote_timer)
 	
-	var new_dodge_timer := Timer.new()
-	new_dodge_timer.name = "dodge_time"
-	add_child(new_dodge_timer)
+	var new_dash_timer := Timer.new()
+	new_dash_timer.name = "dash_time"
+	add_child(new_dash_timer)
 	
 	var new_wall_jump_timer := Timer.new()
 	new_wall_jump_timer.name = "wall_jump_time"
@@ -99,7 +100,7 @@ func _ready():
 	animation_node = get_node("animations")
 	jump_allowance_node = get_node("jump_allowance")
 	coyote_node = get_node("coyote_allowance")
-	dodge_node = get_node("dodge_time")
+	dash_node = get_node("dash_time")
 	controller_node = get_node("controller_container")
 	wall_jump_node = get_node("wall_jump_time")
 	stamina_penalty_node = get_node("stamina_zero_penalty_timer")
@@ -118,8 +119,8 @@ func set_timers():
 	jump_allowance_node.one_shot = true
 	coyote_node.wait_time = coyote_time_allowance
 	coyote_node.one_shot = true
-	dodge_node.wait_time = dodge_time
-	dodge_node.one_shot = true
+	dash_node.wait_time = dash_time
+	dash_node.one_shot = true
 	wall_jump_node.wait_time = wall_jump_time
 	wall_jump_node.one_shot = true
 	stamina_penalty_node.wait_time = stamina_zero_penalty_time
@@ -223,7 +224,7 @@ func get_character_input():
 	#Both Dodging and wall jumps are set character X speeds while they are in control
 
 	var tile_acceleration_modifier = get_tile_mod("friction_mod", 1, true)
-	if dodge_node.is_stopped() && wall_jump_node.is_stopped():
+	if dash_node.is_stopped() && wall_jump_node.is_stopped():
 		var adjust_rate = acceleration * tile_acceleration_modifier
 		if direction != clamp(velocity.x,-1,1):
 			adjust_rate = decceleration * tile_acceleration_modifier
@@ -231,14 +232,17 @@ func get_character_input():
 		var _velocity = velocity.x
 		character_velocity.x = lerp(_velocity, direction * speed,adjust_rate)
 	
-	#Handle Dodge
-	if is_just_pressed("dodge"):
+	#Handle Dash
+	if is_just_pressed("dash"):
 		character_velocity.y = 0
-		var dodge_velocity = dodge_speed
-		if not is_left:
-			dodge_velocity = dodge_velocity * -1
-		character_velocity.x = dodge_velocity
-		dodge_node.start()
+		var dash_velocity = dash_speed
+		if cur_stamina <= dash_stamina_cost:
+			dash_velocity = dash_velocity * low_stamina_penalty
+		if is_left:
+			dash_velocity = dash_velocity * -1
+		character_velocity.x = dash_velocity
+		stamina_penalty(dash_stamina_cost)
+		dash_node.start()
 
 func get_tile_mod(mod_name : String, default : Variant, TileBelow : bool = false) -> Variant:
 	var TileBelowPos : Vector2 = Vector2(position.x, position.y)
@@ -276,7 +280,7 @@ func final_update():
 	sync_input_dicts()
 
 func update_player_physics(delta):
-	if not is_on_floor() and dodge_node.is_stopped():
+	if not is_on_floor() and dash_node.is_stopped():
 		var gravity_modifier = 1
 		
 		if velocity.y < apex_threshold && velocity.y > -(apex_threshold):
