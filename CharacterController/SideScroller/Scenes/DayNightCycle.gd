@@ -1,7 +1,7 @@
 extends CanvasModulate
 var sceneWind = preload("res://CharacterController/SideScroller/Scenes/wind.tscn")
 @export var gradient:GradientTexture1D
-@export var INGAME_SPEED = 0.1  # 1 realtime second to take 1 ingame minute, setting to 20 would mean 1 realtime sec would pass 20 in game minutes
+@export var INGAME_SPEED = 20.0  # 1 realtime second to take 1 ingame minute, setting to 20 would mean 1 realtime sec would pass 20 in game minutes
 @export var INITIAL_HOUR = 6:
 	set(h):
 		INITIAL_HOUR = h
@@ -23,6 +23,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	time += delta * INGAME_TO_REAL_MINUTE_DURATION * INGAME_SPEED
 	
 	var value = (sin(time - PI / 2) + 1.0) / 2.0 
@@ -53,7 +54,7 @@ func _recalculate_time():
 			$Wind.emitting = true
 		else:
 			$Wind.emitting = false
-
+	print("Day: ", day, "Hour: ", hour, "Min: ", minute)
 
 func _on_value_value_changed(value):
 	INGAME_SPEED = value
