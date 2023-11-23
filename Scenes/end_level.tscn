@@ -84,6 +84,19 @@ scale = Vector2(2, 2)
 text = "69"
 horizontal_alignment = 1
 
+[node name="lblResult4" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -934.0
+offset_top = 343.0
+offset_right = -934.0
+offset_bottom = 369.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+text = "69"
+horizontal_alignment = 1
+
 [node name="Dead" type="Sprite2D" parent="."]
 position = Vector2(892, 480)
 texture = ExtResource("7_jdyr0")

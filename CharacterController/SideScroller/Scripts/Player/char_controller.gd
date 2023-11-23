@@ -267,7 +267,7 @@ func get_tile_mod(mod_name : String, default : Variant, TileBelow : bool = false
 		TileBelowPos = Vector2(position.x, position.y + 10)
 		
 	var result = World.get_custom_data(TileBelowPos,mod_name)
-	LevelDirector.DebugMessage(str(result))
+	#LevelDirector.DebugMessage(str(result))
 	if result:
 		return result
 	else:
@@ -350,3 +350,4 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("collectable"):
 		body.Collect()
+		LevelDirector.yellow_coins += 1
