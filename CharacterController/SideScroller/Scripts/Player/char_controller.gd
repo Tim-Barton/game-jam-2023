@@ -27,6 +27,7 @@ extends CharacterBody2D
 @export var max_wall_slide_velocity = 100
 @export var wall_jump_time = 0.2
 @export var wall_jump_x_speed = 700
+@export var wall_jump_reverse_coyote_time = 0.2
 
 @export_group("Stamina")
 @export var jump_stamina_cost = 5
@@ -51,7 +52,10 @@ var coyote_node : Timer
 var dash_node : Timer
 var controller_node : Node
 var wall_jump_node : Timer
+var wall_jump_coyote_node : Timer
 var stamina_penalty_node : Timer
+
+var wall_jump_ready = false
 
 ## Enums
 enum PlayerStates {Idle, Walk, Jumping, Falling, Landed}
@@ -92,6 +96,11 @@ func _ready():
 	var new_wall_jump_timer := Timer.new()
 	new_wall_jump_timer.name = "wall_jump_time"
 	add_child(new_wall_jump_timer)
+	
+	var new_wall_jump_coyote_timer := Timer.new()
+	new_wall_jump_coyote_timer.connect("timeout", wall_jump_coyote_trigger)
+	new_wall_jump_coyote_timer.name = "wall_jump_coyote_time"
+	add_child(new_wall_jump_coyote_timer)
 
 	var stamina_zero_penalty_timer := Timer.new()
 	stamina_zero_penalty_timer.name = "stamina_zero_penalty_timer"
@@ -103,6 +112,7 @@ func _ready():
 	dash_node = get_node("dash_time")
 	controller_node = get_node("controller_container")
 	wall_jump_node = get_node("wall_jump_time")
+	wall_jump_coyote_node = get_node("wall_jump_coyote_time")
 	stamina_penalty_node = get_node("stamina_zero_penalty_timer")
 	
 	set_timers()
@@ -123,6 +133,8 @@ func set_timers():
 	dash_node.one_shot = true
 	wall_jump_node.wait_time = wall_jump_time
 	wall_jump_node.one_shot = true
+	wall_jump_coyote_node.wait_time = wall_jump_reverse_coyote_time
+	wall_jump_coyote_node.one_shot = true
 	stamina_penalty_node.wait_time = stamina_zero_penalty_time
 	stamina_penalty_node.one_shot = true
 
@@ -177,6 +189,10 @@ func character_jump(increase_jump_count : int, early_release : bool = false) -> 
 	
 	cur_jump_count += increase_jump_count
 	return calc_jump_force
+	
+func wall_jump_coyote_trigger():
+	print("Wall jump timeout")
+	wall_jump_ready = true
 
 func get_character_input():
 	character_velocity.x = velocity.x
@@ -190,7 +206,7 @@ func get_character_input():
 		if not coyote_node.is_stopped():
 			character_velocity.y = character_jump(1)
 			coyote_node.stop()
-		elif is_on_wall() && not is_on_floor():
+		elif is_on_wall() && not is_on_floor() && wall_jump_ready:
 			character_velocity.y = character_jump(0)
 			var wall_jump_velocity = wall_jump_x_speed
 			if cur_stamina <= jump_stamina_cost:
@@ -199,6 +215,7 @@ func get_character_input():
 				wall_jump_velocity = wall_jump_velocity * -1
 			character_velocity.x = wall_jump_velocity
 			wall_jump_node.start()
+			wall_jump_ready = false
 		elif not is_on_floor() && cur_jump_count < (max_jumps_enabled - 1):
 			character_velocity.y = character_jump(1)
 			wall_jump_node.stop()
@@ -265,6 +282,8 @@ func update_player_state():
 			player_state = PlayerStates.Walk
 		elif direction == 0:
 			player_state = PlayerStates.Idle
+		wall_jump_ready = false
+		wall_jump_coyote_node.stop()
 	else:
 		if velocity.y < 0:
 			player_state = PlayerStates.Jumping
@@ -290,6 +309,8 @@ func update_player_physics(delta):
 	if character_velocity.y > 0:
 		if is_on_wall():
 			character_velocity.y = clamp(character_velocity.y,0,max_wall_slide_velocity)
+			if wall_jump_coyote_node.is_stopped():
+				wall_jump_coyote_node.start()
 		else:
 			character_velocity.y = clamp(character_velocity.y,0,max_fall_velocity)
 	
