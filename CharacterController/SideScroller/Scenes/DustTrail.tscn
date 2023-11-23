@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxdk6u8rkxyhr"]
+[gd_scene load_steps=9 format=3 uid="uid://bxdk6u8rkxyhr"]
 
 [ext_resource type="Texture2D" uid="uid://bmnn7vfgnf1fb" path="res://CharacterController/SideScroller/Scenes/dust.png" id="1_opqbe"]
 
@@ -33,18 +33,41 @@ scale_min = 0.8
 color_ramp = SubResource("GradientTexture1D_yj23l")
 anim_speed_curve = SubResource("CurveTexture_lb5go")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l53gj"]
+lifetime_randomness = 0.7
+emission_shape = 1
+emission_sphere_radius = 6.0
+particle_flag_disable_z = true
+spread = 30.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+initial_velocity_min = 35.0
+initial_velocity_max = 35.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 0.1
+angle_max = 0.1
+color_ramp = SubResource("GradientTexture1D_yj23l")
+anim_speed_curve = SubResource("CurveTexture_lb5go")
+
 [node name="Node2D" type="Node2D"]
 
 [node name="DustTrail" type="GPUParticles2D" parent="."]
 z_index = -1
 material = SubResource("CanvasItemMaterial_6xlbt")
 position = Vector2(524, 309)
-emitting = false
 process_material = SubResource("ParticleProcessMaterial_3irmv")
 texture = ExtResource("1_opqbe")
 lifetime = 1.2
-one_shot = true
 explosiveness = 0.8
 
-[node name="Timer" type="Timer" parent="DustTrail"]
-wait_time = 0.5
+[node name="DustBurst" type="GPUParticles2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_6xlbt")
+position = Vector2(524, 309)
+emitting = false
+amount = 14
+process_material = SubResource("ParticleProcessMaterial_l53gj")
+texture = ExtResource("1_opqbe")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.8
