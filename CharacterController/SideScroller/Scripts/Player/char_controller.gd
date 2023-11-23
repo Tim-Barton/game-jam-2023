@@ -54,6 +54,7 @@ var controller_node : Node
 var wall_jump_node : Timer
 var wall_jump_coyote_node : Timer
 var stamina_penalty_node : Timer
+var dust_burst : GPUParticles2D
 
 var wall_jump_ready = false
 
@@ -114,6 +115,7 @@ func _ready():
 	wall_jump_node = get_node("wall_jump_time")
 	wall_jump_coyote_node = get_node("wall_jump_coyote_time")
 	stamina_penalty_node = get_node("stamina_zero_penalty_timer")
+	dust_burst = get_node("DustTrail/DustBurst")
 	
 	set_timers()
 	
@@ -260,6 +262,9 @@ func get_character_input():
 		character_velocity.x = dash_velocity
 		stamina_penalty(dash_stamina_cost)
 		dash_node.start()
+		dust_burst.rotation = (direction * -1)
+		dust_burst.restart()
+		dust_burst.emitting = true
 
 func get_tile_mod(mod_name : String, default : Variant, TileBelow : bool = false) -> Variant:
 	var TileBelowPos : Vector2 = Vector2(position.x, position.y)
