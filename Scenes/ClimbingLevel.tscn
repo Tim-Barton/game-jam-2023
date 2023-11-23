@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dssxe72x8lvg7"]
+[gd_scene load_steps=22 format=3 uid="uid://dssxe72x8lvg7"]
 
 [ext_resource type="PackedScene" uid="uid://r44oitiuh0sh" path="res://CharacterController/SideScroller/Scenes/WeatherSystem.tscn" id="1_4n1f5"]
 [ext_resource type="Texture2D" uid="uid://b8g832tva4kns" path="res://GFX/Level/BaseTileset2.png" id="1_7kl7l"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/camera_controller.gd" id="3_utva6"]
 [ext_resource type="Texture2D" uid="uid://sscrbnanlaco" path="res://GFX/Level/BG-Mountain.png" id="4_y820s"]
 [ext_resource type="Texture2D" uid="uid://cnb8264cwegwa" path="res://GFX/Level/BG-Snow.png" id="5_1kvm3"]
+[ext_resource type="PackedScene" uid="uid://bxdk6u8rkxyhr" path="res://CharacterController/SideScroller/Scenes/DustTrail.tscn" id="5_50t4q"]
 [ext_resource type="Script" path="res://Scripts/Deathbar.gd" id="5_uwo3c"]
 [ext_resource type="Texture2D" uid="uid://clkxq03fjevdw" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/clock.png" id="6_e0kdm"]
 [ext_resource type="Texture2D" uid="uid://cqk2muuvxavd8" path="res://CharacterController/SideScroller/GFX/3 Objects/4 Collectables/gold coin.png" id="7_4trhl"]
@@ -874,6 +875,15 @@ position = Vector2(-370, 176)
 scale = Vector2(0.75, 0.75)
 stamina_zero_penalty_time = 2.0
 
+[node name="DustTrail" parent="Level/Character" instance=ExtResource("5_50t4q")]
+position = Vector2(493.333, -234.667)
+scale = Vector2(1.33333, 1.33333)
+
+[node name="DustTrail" parent="Level/Character/DustTrail" index="0"]
+position = Vector2(-370, 203)
+emitting = true
+one_shot = false
+
 [node name="CameraFocus" type="Node2D" parent="Level/Character"]
 position = Vector2(0, -148)
 
@@ -1023,3 +1033,5 @@ noise_shake_speed = 0.2
 noise_shake_strength = 0.0
 
 [connection signal="body_entered" from="LevelDirector/Camera2D/Deathbar" to="LevelDirector/Camera2D/Deathbar" method="_on_body_entered"]
+
+[editable path="Level/Character/DustTrail"]
