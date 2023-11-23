@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/camera_controller.gd" id="3_utva6"]
 [ext_resource type="Texture2D" uid="uid://sscrbnanlaco" path="res://GFX/Level/BG-Mountain.png" id="4_y820s"]
 [ext_resource type="Texture2D" uid="uid://cnb8264cwegwa" path="res://GFX/Level/BG-Snow.png" id="5_1kvm3"]
+[ext_resource type="PackedScene" uid="uid://bxdk6u8rkxyhr" path="res://CharacterController/SideScroller/Scenes/DustTrail.tscn" id="5_50t4q"]
 [ext_resource type="Script" path="res://Scripts/Deathbar.gd" id="5_uwo3c"]
 [ext_resource type="Texture2D" uid="uid://b3do4cihxhymq" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_gold_coin.png" id="8_l052f"]
 [ext_resource type="Texture2D" uid="uid://dbncb0mr1wwn" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_blue_coin.png" id="9_67d3r"]
@@ -875,6 +876,15 @@ position = Vector2(-370, 176)
 scale = Vector2(0.75, 0.75)
 stamina_zero_penalty_time = 2.0
 
+[node name="DustTrail" parent="Level/Character" instance=ExtResource("5_50t4q")]
+position = Vector2(493.333, -234.667)
+scale = Vector2(1.33333, 1.33333)
+
+[node name="DustTrail" parent="Level/Character/DustTrail" index="0"]
+position = Vector2(-370, 203)
+emitting = true
+one_shot = false
+
 [node name="CameraFocus" type="Node2D" parent="Level/Character"]
 position = Vector2(0, -148)
 
@@ -1030,3 +1040,5 @@ position = Vector2(-282, 172)
 position = Vector2(-103, 171)
 
 [connection signal="body_entered" from="LevelDirector/Camera2D/Deathbar" to="LevelDirector/Camera2D/Deathbar" method="_on_body_entered"]
+
+[editable path="Level/Character/DustTrail"]
