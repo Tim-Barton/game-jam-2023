@@ -877,6 +877,9 @@ position = Vector2(-370, 203)
 [node name="CameraFocus" type="Node2D" parent="Level/Character"]
 position = Vector2(0, -148)
 
+[node name="WeatherSystem" parent="Level" instance=ExtResource("1_4n1f5")]
+position = Vector2(0, -63)
+
 [node name="LevelDirector" type="Node" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="LevelDirector"]
@@ -990,10 +993,6 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "0"
 horizontal_alignment = 2
-
-[node name="WeatherSystem" parent="LevelDirector/Camera2D" instance=ExtResource("1_4n1f5")]
-visible = false
-position = Vector2(0, -63)
 
 [node name="BGImage" type="Sprite2D" parent="LevelDirector/Camera2D"]
 z_index = -2
