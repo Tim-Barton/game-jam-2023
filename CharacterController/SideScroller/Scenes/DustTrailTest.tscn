@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://1x4nmoqs3i0l"]
+
+[ext_resource type="Texture2D" uid="uid://bmnn7vfgnf1fb" path="res://CharacterController/SideScroller/Scenes/dust.png" id="1_qmxa3"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6xlbt"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_6avp0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lb5go"]
+curve = SubResource("Curve_6avp0")
+
+[sub_resource type="Gradient" id="Gradient_n2rgn"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yj23l"]
+gradient = SubResource("Gradient_n2rgn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3irmv"]
+lifetime_randomness = 0.7
+particle_flag_disable_z = true
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 0.1
+angle_max = 0.1
+scale_min = 0.8
+color_ramp = SubResource("GradientTexture1D_yj23l")
+anim_speed_curve = SubResource("CurveTexture_lb5go")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l53gj"]
+lifetime_randomness = 0.7
+emission_shape = 1
+emission_sphere_radius = 6.0
+particle_flag_disable_z = true
+spread = 30.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+initial_velocity_min = 35.0
+initial_velocity_max = 35.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 0.1
+angle_max = 0.1
+color_ramp = SubResource("GradientTexture1D_yj23l")
+anim_speed_curve = SubResource("CurveTexture_lb5go")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="DustTrail" type="GPUParticles2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_6xlbt")
+position = Vector2(524, 309)
+process_material = SubResource("ParticleProcessMaterial_3irmv")
+texture = ExtResource("1_qmxa3")
+lifetime = 1.2
+explosiveness = 0.8
+
+[node name="DustBurst" type="GPUParticles2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_6xlbt")
+position = Vector2(524, 309)
+amount = 14
+process_material = SubResource("ParticleProcessMaterial_l53gj")
+texture = ExtResource("1_qmxa3")
+lifetime = 1.5
+explosiveness = 1.0

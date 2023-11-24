@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dssxe72x8lvg7"]
+[gd_scene load_steps=25 format=3 uid="uid://dssxe72x8lvg7"]
 
 [ext_resource type="PackedScene" uid="uid://r44oitiuh0sh" path="res://CharacterController/SideScroller/Scenes/WeatherSystem.tscn" id="1_4n1f5"]
 [ext_resource type="Texture2D" uid="uid://b8g832tva4kns" path="res://GFX/Level/BaseTileset2.png" id="1_7kl7l"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/Timer.gd" id="10_dammo"]
 [ext_resource type="Texture2D" uid="uid://bp00xfecsafyi" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_clock.png" id="10_hss5m"]
 [ext_resource type="PackedScene" uid="uid://d3s2ajibehkfx" path="res://CharacterController/SideScroller/Scenes/collectable_gold_coin.tscn" id="16_uiuy6"]
+[ext_resource type="PackedScene" uid="uid://dkc6emhyk4hld" path="res://CharacterController/SideScroller/Scenes/collectable_blue_coin.tscn" id="19_2362n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jsr68"]
 resource_name = "Snowscape"
@@ -1040,6 +1041,14 @@ position = Vector2(-258, 211)
 
 [node name="Gold_Coin2" parent="." instance=ExtResource("16_uiuy6")]
 position = Vector2(-84, 189)
+
+[node name="Blue_Coin" parent="." instance=ExtResource("19_2362n")]
+position = Vector2(-320.204, 275.679)
+scale = Vector2(0.4, 0.4)
+
+[node name="Blue_Coin2" parent="." instance=ExtResource("19_2362n")]
+position = Vector2(80.766, 186.974)
+scale = Vector2(0.4, 0.4)
 
 [connection signal="body_entered" from="LevelDirector/Camera2D/Deathbar" to="LevelDirector/Camera2D/Deathbar" method="_on_body_entered"]
 
