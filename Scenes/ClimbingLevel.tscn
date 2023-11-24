@@ -884,6 +884,7 @@ one_shot = true
 position = Vector2(0, -148)
 
 [node name="WeatherSystem" parent="Level" instance=ExtResource("1_4n1f5")]
+visible = false
 position = Vector2(0, -63)
 
 [node name="LevelDirector" type="Node" parent="."]
@@ -1036,18 +1037,64 @@ shake_decay_rate = 10.0
 noise_shake_speed = 0.2
 noise_shake_strength = 0.0
 
-[node name="Gold_Coin" parent="." instance=ExtResource("16_uiuy6")]
+[node name="Coins" type="Node" parent="."]
+
+[node name="Gold_Coin" parent="Coins" instance=ExtResource("16_uiuy6")]
 position = Vector2(-258, 211)
 
-[node name="Gold_Coin2" parent="." instance=ExtResource("16_uiuy6")]
+[node name="Gold_Coin14" parent="Coins" instance=ExtResource("16_uiuy6")]
+position = Vector2(127.336, -316.125)
+
+[node name="Gold_Coin13" parent="Coins" instance=ExtResource("16_uiuy6")]
+position = Vector2(0.975098, -184.16)
+
+[node name="Gold_Coin12" parent="Coins" instance=ExtResource("16_uiuy6")]
+position = Vector2(126.827, -145.946)
+
+[node name="Gold_Coin11" parent="Coins" instance=ExtResource("16_uiuy6")]
+position = Vector2(265.416, -120.47)
+
+[node name="Gold_Coin10" parent="Coins" instance=ExtResource("16_uiuy6")]
+position = Vector2(410, -101)
+
+[node name="Gold_Coin9" parent="Coins" instance=ExtResource("16_uiuy6")]
+position = Vector2(587.432, -77.6699)
+
+[node name="Gold_Coin8" parent="Coins" instance=ExtResource("16_uiuy6")]
+position = Vector2(719.908, 53.7862)
+
+[node name="Gold_Coin7" parent="Coins" instance=ExtResource("16_uiuy6")]
+position = Vector2(555.333, 132.762)
+
+[node name="Gold_Coin6" parent="Coins" instance=ExtResource("16_uiuy6")]
+position = Vector2(-55.0719, -27.7371)
+
+[node name="Gold_Coin5" parent="Coins" instance=ExtResource("16_uiuy6")]
+position = Vector2(-101.438, -30.2847)
+
+[node name="Gold_Coin4" parent="Coins" instance=ExtResource("16_uiuy6")]
+position = Vector2(-152.39, -27.2275)
+
+[node name="Gold_Coin3" parent="Coins" instance=ExtResource("16_uiuy6")]
+position = Vector2(175.639, 72.5365)
+
+[node name="Gold_Coin2" parent="Coins" instance=ExtResource("16_uiuy6")]
 position = Vector2(-84, 189)
 
-[node name="Blue_Coin" parent="." instance=ExtResource("19_2362n")]
+[node name="Blue_Coin" parent="Coins" instance=ExtResource("19_2362n")]
 position = Vector2(-320.204, 275.679)
 scale = Vector2(0.4, 0.4)
 
-[node name="Blue_Coin2" parent="." instance=ExtResource("19_2362n")]
+[node name="Blue_Coin4" parent="Coins" instance=ExtResource("19_2362n")]
+position = Vector2(-240.028, -248.869)
+scale = Vector2(0.4, 0.4)
+
+[node name="Blue_Coin2" parent="Coins" instance=ExtResource("19_2362n")]
 position = Vector2(80.766, 186.974)
+scale = Vector2(0.4, 0.4)
+
+[node name="Blue_Coin3" parent="Coins" instance=ExtResource("19_2362n")]
+position = Vector2(855.236, -122.304)
 scale = Vector2(0.4, 0.4)
 
 [connection signal="body_entered" from="LevelDirector/Camera2D/Deathbar" to="LevelDirector/Camera2D/Deathbar" method="_on_body_entered"]
