@@ -11,7 +11,7 @@
 [sub_resource type="Theme" id="Theme_jonmg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_so06j"]
-font_size = 25
+font_size = 37
 
 [node name="TestScene" type="Control"]
 layout_mode = 3
@@ -133,11 +133,11 @@ layout_mode = 2
 
 [node name="lblLeaderBoard" type="Label" parent="."]
 layout_mode = 0
-offset_left = 27.369
-offset_top = 409.015
-offset_right = 132.369
-offset_bottom = 435.015
-text = "LeaderBoard:"
+offset_left = 24.5405
+offset_top = 388.509
+offset_right = 242.541
+offset_bottom = 442.509
+text = "High Scores:"
 label_settings = SubResource("LabelSettings_so06j")
 
 [connection signal="pressed" from="btnReturn" to="btnReturn" method="_on_pressed"]
