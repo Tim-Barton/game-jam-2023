@@ -1,0 +1,138 @@
+[gd_scene load_steps=11 format=3 uid="uid://c06xve3vm8ysl"]
+
+[ext_resource type="Script" path="res://Scripts/title_menu.gd" id="1_6f3m7"]
+[ext_resource type="Texture2D" uid="uid://xdgyu4iwgio6" path="res://GFX/Level/Sky.png" id="1_ulv8p"]
+[ext_resource type="Texture2D" uid="uid://sscrbnanlaco" path="res://GFX/Level/BG-Mountain.png" id="2_io5jj"]
+[ext_resource type="Script" path="res://Scripts/PlayerTextInput.gd" id="3_symvu"]
+
+[sub_resource type="SystemFont" id="SystemFont_43nqd"]
+msdf_size = 53
+
+[sub_resource type="LabelSettings" id="LabelSettings_khf3a"]
+font = SubResource("SystemFont_43nqd")
+font_size = 72
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7pe8o"]
+font_size = 24
+
+[sub_resource type="SystemFont" id="SystemFont_ys71w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d5oob"]
+font_size = 22
+font_color = Color(0.670588, 0.780392, 1, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qoww2"]
+font_size = 18
+font_color = Color(1, 0.137255, 0.2, 1)
+outline_size = 8
+outline_color = Color(0.929412, 0.929412, 0.929412, 1)
+
+[node name="title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6f3m7")
+
+[node name="Sky" type="Sprite2D" parent="."]
+position = Vector2(578.823, 340)
+scale = Vector2(1.23105, 1.23105)
+texture = ExtResource("1_ulv8p")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 15.0
+offset_right = 1043.0
+offset_bottom = 117.0
+text = "Scale Home"
+label_settings = SubResource("LabelSettings_khf3a")
+horizontal_alignment = 1
+
+[node name="Bg-mountain" type="Sprite2D" parent="."]
+position = Vector2(873, 332)
+scale = Vector2(2.09148, 3.00282)
+texture = ExtResource("2_io5jj")
+
+[node name="lblPlayerName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 165.0
+offset_right = 589.0
+offset_bottom = 202.0
+text = "Player Name"
+label_settings = SubResource("LabelSettings_7pe8o")
+
+[node name="Username" type="TextEdit" parent="." node_paths=PackedStringArray("lblInstructions")]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 207.0
+offset_right = 799.0
+offset_bottom = 261.0
+theme_override_fonts/font = SubResource("SystemFont_ys71w")
+theme_override_font_sizes/font_size = 22
+placeholder_text = "Enter your player name here"
+context_menu_enabled = false
+shortcut_keys_enabled = false
+drag_and_drop_selection_enabled = false
+caret_multiple = false
+script = ExtResource("3_symvu")
+lblInstructions = NodePath("../Instructions")
+
+[node name="btnPlay" type="Button" parent="."]
+layout_mode = 0
+offset_left = 820.0
+offset_top = 520.0
+offset_right = 1120.0
+offset_bottom = 562.0
+theme_override_font_sizes/font_size = 24
+text = "Scale the mountain"
+
+[node name="btnHighScores" type="Button" parent="."]
+layout_mode = 0
+offset_left = 820.0
+offset_top = 580.0
+offset_right = 1120.0
+offset_bottom = 622.0
+theme_override_font_sizes/font_size = 24
+text = "High Scores"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 320.0
+offset_right = 780.0
+offset_bottom = 520.0
+
+[node name="lblInsructions" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 709.0
+offset_bottom = 186.0
+text = "Young dragon you have fallen! 
+You must get back up the mountain before the rising mist. 
+Jump, double jump, dash and bounce off walls all while ensuring you have enough stamina to keep going!"
+label_settings = SubResource("LabelSettings_d5oob")
+autowrap_mode = 2
+
+[node name="Instructions" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 438.0
+offset_top = 263.0
+offset_right = 788.0
+offset_bottom = 292.0
+text = "Enter a player name!"
+label_settings = SubResource("LabelSettings_qoww2")
+horizontal_alignment = 1
+
+[connection signal="gui_input" from="Username" to="Username" method="_on_gui_input"]
+[connection signal="text_changed" from="Username" to="Username" method="_on_text_changed"]
+[connection signal="pressed" from="btnPlay" to="." method="_on_btn_play_pressed"]

@@ -13,4 +13,4 @@ func _process(delta):
 
 
 func _on_pressed():
-	SceneManager.change_scene("res://Scenes/ClimbingLevel.tscn", SceneManager.TransitionTypes.bluewave)
+	SceneManager.change_scene("res://Scenes/title.tscn", SceneManager.TransitionTypes.bluewave)
