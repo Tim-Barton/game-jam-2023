@@ -27,7 +27,7 @@ extends CharacterBody2D
 @export var max_wall_slide_velocity = 100
 @export var wall_jump_time = 0.2
 @export var wall_jump_x_speed = 700
-@export var wall_jump_reverse_coyote_time = 0.2
+@export var wall_jump_reverse_coyote_time = 0.1
 
 @export_group("Stamina")
 @export var jump_stamina_cost = 5
