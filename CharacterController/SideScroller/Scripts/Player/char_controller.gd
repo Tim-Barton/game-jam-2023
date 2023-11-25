@@ -351,12 +351,9 @@ func _physics_process(delta):
 	
 	final_update()
 
-
-
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("collectable"):
 		body.Collect()
 	if body.is_in_group("stamina_collectable"):
 		body.Collect()
 		stamina_penalty(stamina_add)
-		

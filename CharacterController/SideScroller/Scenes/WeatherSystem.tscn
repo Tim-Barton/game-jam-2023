@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://r44oitiuh0sh"]
 
 [ext_resource type="Texture2D" uid="uid://bus8p3vypv56l" path="res://CharacterController/SideScroller/Scenes/rain.png" id="2_4vejg"]
-[ext_resource type="PackedScene" uid="uid://ctgn0ppn28qal" path="res://CharacterController/SideScroller/Scenes/Wind.tscn" id="3_a5cx3"]
+[ext_resource type="PackedScene" uid="uid://ctgn0ppn28qal" path="res://CharacterController/SideScroller/Scenes/wind.tscn" id="3_a5cx3"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/DayNightCycle.gd" id="4_p4oxd"]
 [ext_resource type="Texture2D" uid="uid://v38ysjqhtjef" path="res://CharacterController/SideScroller/Scenes/daynightcycle-gradient-texture.tres" id="5_jy7b8"]
 
