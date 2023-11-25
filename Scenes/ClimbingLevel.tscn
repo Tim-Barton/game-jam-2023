@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dssxe72x8lvg7"]
+[gd_scene load_steps=28 format=3 uid="uid://dssxe72x8lvg7"]
 
 [ext_resource type="PackedScene" uid="uid://r44oitiuh0sh" path="res://CharacterController/SideScroller/Scenes/WeatherSystem.tscn" id="1_4n1f5"]
 [ext_resource type="Texture2D" uid="uid://b8g832tva4kns" path="res://GFX/Level/BaseTileset2.png" id="1_7kl7l"]
@@ -19,7 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://bp00xfecsafyi" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_clock.png" id="10_hss5m"]
 [ext_resource type="PackedScene" uid="uid://d3s2ajibehkfx" path="res://CharacterController/SideScroller/Scenes/collectable_gold_coin.tscn" id="16_uiuy6"]
 [ext_resource type="PackedScene" uid="uid://dkc6emhyk4hld" path="res://CharacterController/SideScroller/Scenes/collectable_blue_coin.tscn" id="19_2362n"]
-[ext_resource type="PackedScene" uid="uid://552yy8deirn1" path="res://CharacterController/SideScroller/Scenes/collectable_apple.tscn" id="20_dkdqg"]
+[ext_resource type="PackedScene" uid="uid://b73cfo8t2j8id" path="res://CharacterController/SideScroller/Scenes/collectable_apple.tscn" id="20_dkdqg"]
+[ext_resource type="Script" path="res://Scripts/CameraAnchor.gd" id="21_mapke"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jsr68"]
 resource_name = "Snowscape"
@@ -841,6 +842,12 @@ sources/1 = SubResource("TileSetAtlasSource_i4xt1")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rrlme"]
 size = Vector2(1200, 51)
 
+[sub_resource type="Curve2D" id="Curve2D_s6qfh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -434, 203, 0, 0, 0, 0, -19, 227, 0, 0, 0, 0, 331, 221, 0, 0, 0, 0, 741, 191, 0, 0, 0, 0, 849, -36, 0, 0, 0, 0, 432, -120, 0, 0, 0, 0, 31, -133, 0, 0, 0, 0, -286, -88, 0, 0, 0, 0, -318, -310, 0, 0, 0, 0, -211, -534, 0, 0, 0, 0, 274, -473, 0, 0, 0, 0, 734, -436, 0, 0, 0, 0, 972, -503, 0, 0, 0, 0, 763, -614, 0, 0, 0, 0, 603, -712, 0, 0, 0, 0, 877, -757, 0, 0, 0, 0, 892, -887)
+}
+point_count = 17
+
 [node name="ClimbingLevel" type="Node2D"]
 
 [node name="Level" type="Node" parent="."]
@@ -895,6 +902,7 @@ position = Vector2(0, -63)
 [node name="LevelDirector" type="Node" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="LevelDirector"]
+position = Vector2(-100, 100)
 zoom = Vector2(1.25, 1.25)
 
 [node name="UI" type="Control" parent="LevelDirector/Camera2D" node_paths=PackedStringArray("character_node")]
@@ -1043,8 +1051,7 @@ acceleration = 4.0
 deceleration = 2.0
 max_movement_speed = 15.0
 viewport_region = Rect2(0, -900, 500, 1000)
-target_node = NodePath("../../Level/Character")
-target_node_offset = Vector2(0, -100)
+target_node = NodePath("../../Path2D/PathFollow2D")
 shake_decay_rate = 10.0
 noise_shake_speed = 0.2
 noise_shake_strength = 0.0
@@ -1129,6 +1136,21 @@ position = Vector2(588.343, -658.322)
 
 [node name="Apple2" parent="Apples" instance=ExtResource("20_dkdqg")]
 position = Vector2(932.618, -92.2595)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_s6qfh")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-434, 203)
+rotation = 0.057767
+
+[node name="CameraAnchor" type="Node2D" parent="Path2D/PathFollow2D"]
+script = ExtResource("21_mapke")
+
+[node name="Gold_Coin" parent="Path2D/PathFollow2D/CameraAnchor" instance=ExtResource("16_uiuy6")]
+
+[node name="CameraFocus" type="Node2D" parent="Path2D/PathFollow2D/CameraAnchor"]
+position = Vector2(0, -148)
 
 [connection signal="body_entered" from="LevelDirector/Camera2D/Deathbar" to="LevelDirector/Camera2D/Deathbar" method="_on_body_entered"]
 
