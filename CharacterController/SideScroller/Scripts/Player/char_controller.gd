@@ -38,6 +38,7 @@ extends CharacterBody2D
 @export var zero_stamina_time_penalty = 2
 @export var stamina_zero_penalty_time = 0.5
 @export var dash_stamina_cost = 5
+@export var stamina_add = -20
 
 # Internal Variables
 ## Presets
@@ -355,5 +356,7 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("collectable"):
 		body.Collect()
-
+	if body.is_in_group("stamina_collectable"):
+		body.Collect()
+		stamina_penalty(stamina_add)
 		

@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bp00xfecsafyi" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_clock.png" id="10_hss5m"]
 [ext_resource type="PackedScene" uid="uid://d3s2ajibehkfx" path="res://CharacterController/SideScroller/Scenes/collectable_gold_coin.tscn" id="16_uiuy6"]
 [ext_resource type="PackedScene" uid="uid://dkc6emhyk4hld" path="res://CharacterController/SideScroller/Scenes/collectable_blue_coin.tscn" id="19_2362n"]
-[ext_resource type="PackedScene" uid="uid://552yy8deirn1" path="res://CharacterController/SideScroller/Scenes/collectable_apple.tscn" id="20_dkdqg"]
+[ext_resource type="PackedScene" uid="uid://dmhqlqyc8f757" path="res://CharacterController/SideScroller/Scenes/collectable_apple.tscn" id="20_dkdqg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jsr68"]
 resource_name = "Snowscape"
