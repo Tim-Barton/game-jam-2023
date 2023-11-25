@@ -24,6 +24,7 @@ func _process(delta):
 		minutes = fmod(time, 3600) / 60
 	else:
 		LevelDirector.EndLevel((minutes * 60) + seconds)
+		LevelDirector.StopMusic()
 				
 	$Minutes.text = get_time_formatted()
 	

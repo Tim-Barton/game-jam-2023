@@ -185,6 +185,7 @@ func character_jump(increase_jump_count : int, early_release : bool = false) -> 
 	if early_release:
 		calc_jump_force *= jump_early_release
 	else:
+		LevelDirector.PlaySound(LevelDirector.JUMP)
 		if cur_stamina < jump_stamina_cost:
 			calc_jump_force = calc_jump_force * low_stamina_penalty
 		stamina_penalty(jump_stamina_cost)
@@ -354,6 +355,8 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("collectable"):
 		body.Collect()
+		LevelDirector.PlaySound(LevelDirector.COLLECTIBLE)
 	if body.is_in_group("stamina_collectable"):
 		body.Collect()
+		LevelDirector.PlaySound(LevelDirector.COLLECTIBLE)
 		stamina_penalty(stamina_add)

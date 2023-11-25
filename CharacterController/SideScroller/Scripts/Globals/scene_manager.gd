@@ -5,6 +5,7 @@ var Transitioning : bool = false
 
 func change_scene(target: String, transition_type: TransitionTypes) -> void:
 	if not Transitioning:
+		LevelDirector.PlaySound(LevelDirector.SCENECHANGE)
 		match transition_type:
 			TransitionTypes.dissolve:
 				Transitioning = true

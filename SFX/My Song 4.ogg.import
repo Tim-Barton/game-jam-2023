@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://f76105yp5nit"
+path="res://.godot/imported/My Song 4.ogg-e4267e06258f851ddfc5bc36fd1e08ea.oggvorbisstr"
+
+[deps]
+
+source_file="res://SFX/My Song 4.ogg"
+dest_files=["res://.godot/imported/My Song 4.ogg-e4267e06258f851ddfc5bc36fd1e08ea.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

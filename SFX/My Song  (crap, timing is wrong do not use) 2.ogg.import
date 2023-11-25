@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://n4j2w28or621"
+path="res://.godot/imported/My Song  (crap, timing is wrong do not use) 2.ogg-9f8b7260c642a31950ba0df517c210bc.oggvorbisstr"
+
+[deps]
+
+source_file="res://SFX/My Song  (crap, timing is wrong do not use) 2.ogg"
+dest_files=["res://.godot/imported/My Song  (crap, timing is wrong do not use) 2.ogg-9f8b7260c642a31950ba0df517c210bc.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

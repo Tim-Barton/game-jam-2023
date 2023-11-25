@@ -9,11 +9,20 @@ var yellow_coins : int = 0
 var _olddebugmessage : String = ""
 var _debugmessage : String = ""
 
-@export var level_countout_seconds : int = 5
+@export var level_countout_seconds : int = 2
 var level_countout : Timer
 var start_end_level : bool = false
 var end_level : bool = false
 var change_level : bool = false
+
+var SFXManager : AudioStreamPlayer
+var MusicManager : AudioStreamPlayer
+
+const JUMP = preload("res://SFX/350905__cabled-mess__jump-c-05.wav")
+const COLLECTIBLE = preload("res://SFX/coin.wav")
+const DEATH = preload("res://SFX/Death.mp3")
+const SCENECHANGE = preload("res://SFX/404750__owlstorm__retro-video-game-sfx-collect-5.wav")
+const BGM_1 = preload("res://SFX/My Song  (crap, timing is wrong do not use) 2.ogg")
 
 func _ready():
 	var new_level_countout := Timer.new()
@@ -22,6 +31,18 @@ func _ready():
 	level_countout = get_node("level_countout")
 	level_countout.wait_time = level_countout_seconds
 	level_countout.one_shot = true
+	
+	var SFXPlayerNode := AudioStreamPlayer.new()
+	SFXPlayerNode.name = "SFX"
+	add_child(SFXPlayerNode)
+	SFXManager = get_node("SFX")
+	
+	var MusicPlayerNode := AudioStreamPlayer.new()
+	MusicPlayerNode.name = "Music"
+	MusicPlayerNode.volume_db = -17.5
+	add_child(MusicPlayerNode)
+	MusicManager = get_node("Music")
+
 
 func _process(delta):
 	if start_end_level:
@@ -45,3 +66,14 @@ func DebugMessage(Message : String) -> void:
 		var time_return = str(time.hour) +":"+str(time.minute)+":"+str(time.second)
 		print(time_return, " : ", Message)
 		_olddebugmessage = _debugmessage
+		
+func PlaySound(AudioFilename : AudioStream) -> void:
+	SFXManager.stream = AudioFilename
+	SFXManager.play()
+
+func PlayMusic(AudioFilename : AudioStream) -> void:
+	MusicManager.stream = AudioFilename
+	MusicManager.play()
+
+func StopMusic() -> void:
+	MusicManager.stop()

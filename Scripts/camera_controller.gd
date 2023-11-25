@@ -56,7 +56,7 @@ func _process(delta):
 	current_zoom = camera_node.zoom
 		
 	if target_node:
-		to_location = target_node.position+target_node_offset
+		to_location = target_node.global_position+target_node_offset
 	if current_position == to_location && from_location != to_location:
 		#Reest movement from
 		from_location = to_location

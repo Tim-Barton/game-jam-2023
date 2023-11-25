@@ -7,6 +7,7 @@ static var _instance: World = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_instance = self if _instance == null else _instance
+	LevelDirector.PlayMusic(LevelDirector.BGM_1)
 
 static func get_tile_data(position: Vector2) -> TileData:
 	var local_position: Vector2i = _instance.tile_map.local_to_map(position)

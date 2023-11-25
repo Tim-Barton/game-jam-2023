@@ -118,7 +118,8 @@ offset_right = 709.0
 offset_bottom = 186.0
 text = "Young dragon you have fallen! 
 You must get back up the mountain before the rising mist. 
-Jump, double jump, dash and bounce off walls all while ensuring you have enough stamina to keep going!"
+
+Jump (space), double jump, dash (shift) and bounce off walls all while ensuring you have enough stamina to keep going!"
 label_settings = SubResource("LabelSettings_d5oob")
 autowrap_mode = 2
 

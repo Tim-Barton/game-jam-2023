@@ -7,7 +7,7 @@ var LoadedLeaderBoard : bool = false
 
 #Time Count
 var TimeCount : float = 0.0
-var TimeInterval : float = 0.1
+var TimeInterval : float = 0.4
 var TimeTarget : float
 
 #BlueCoin Count
