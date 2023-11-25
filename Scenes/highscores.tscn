@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpw3ub7ofduu0"]
+
+[ext_resource type="Script" path="res://Scripts/highscores.gd" id="1_vf6we"]
+[ext_resource type="Texture2D" uid="uid://bisxqedal0bj2" path="res://GFX/GameOverScreen.png" id="2_yb606"]
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scripts/Testing/TestScene_UI.gd" id="3_bruue"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_so06j"]
+font_size = 37
+
+[node name="TestScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vf6we")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 112.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_yb606")
+expand_mode = 2
+
+[node name="btnReturn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 414.0
+offset_top = -284.0
+offset_right = 545.0
+offset_bottom = -253.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Return"
+script = ExtResource("3_bruue")
+
+[node name="lblLeaderBoard" type="Label" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 18.0
+offset_right = 245.001
+offset_bottom = 72.0
+text = "High Scores:"
+label_settings = SubResource("LabelSettings_so06j")
+
+[node name="HighScores" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 80.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreItemContainer" type="VBoxContainer" parent="HighScores"]
+layout_mode = 2
+
+[node name="Loading" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loading Sores..."
+
+[connection signal="pressed" from="btnReturn" to="btnReturn" method="_on_pressed"]

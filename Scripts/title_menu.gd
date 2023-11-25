@@ -18,3 +18,7 @@ func _on_btn_play_pressed():
 	else:
 		LevelDirector.player_name = PlayerName
 		SceneManager.change_scene("res://Scenes/ClimbingLevel.tscn", SceneManager.TransitionTypes.bluewave)
+
+
+func _on_btn_high_scores_pressed():
+		SceneManager.change_scene("res://Scenes/highscores.tscn", SceneManager.TransitionTypes.bluewave)
