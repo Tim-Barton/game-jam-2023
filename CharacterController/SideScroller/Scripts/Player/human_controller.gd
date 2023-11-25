@@ -5,7 +5,9 @@ var key_inputs = {
 	"ui_accept": "jump",
 	"dash": "dash",
 	"ui_left": "left",
-	"ui_right": "right"}
+	"ui_right": "right",
+	"fly":"fly",
+	}
 
 func _physics_process(delta) -> void:
 	for key_input in key_inputs.keys():

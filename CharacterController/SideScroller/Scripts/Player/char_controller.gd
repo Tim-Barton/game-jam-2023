@@ -68,7 +68,8 @@ var input_dict = {
 	"right": false,
 	"jump": false,
 	"dash": false,
-	"release_control": false
+	"release_control": false,
+	"fly": false
 }
 var previous_input = {}
 
@@ -201,6 +202,9 @@ func wall_jump_coyote_trigger():
 func get_character_input():
 	character_velocity.x = velocity.x
 	character_velocity.y = velocity.y
+	
+	if is_pressed("fly"):
+		character_velocity.y = jump_force
 	
 	# Handle Jump.
 	if is_just_released("jump") && velocity.y < 0  && cur_jump_count < (max_jumps_enabled):
