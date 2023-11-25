@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://om605226ul1"]
+[gd_scene load_steps=10 format=3 uid="uid://om605226ul1"]
 
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scripts/Testing/TestScene_UI.gd" id="2_2onf3"]
 [ext_resource type="Texture2D" uid="uid://bisxqedal0bj2" path="res://GFX/GameOverScreen.png" id="2_raegv"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://bl6mikx637tr2" path="res://CharacterController/SideScroller/GFX/Swordsman/Dead.png" id="7_jdyr0"]
 
 [sub_resource type="Theme" id="Theme_jonmg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_so06j"]
+font_size = 25
 
 [node name="TestScene" type="Control"]
 layout_mode = 3
@@ -127,5 +130,14 @@ theme = SubResource("Theme_jonmg")
 
 [node name="ScoreItemContainer" type="VBoxContainer" parent="HighScores"]
 layout_mode = 2
+
+[node name="lblLeaderBoard" type="Label" parent="."]
+layout_mode = 0
+offset_left = 27.369
+offset_top = 409.015
+offset_right = 132.369
+offset_bottom = 435.015
+text = "LeaderBoard:"
+label_settings = SubResource("LabelSettings_so06j")
 
 [connection signal="pressed" from="btnReturn" to="btnReturn" method="_on_pressed"]
