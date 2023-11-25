@@ -4,4 +4,4 @@ extends StaticBody2D
 
 func Collect():
 	queue_free()
-	#LevelDirector.blue_coins += 1
+	
