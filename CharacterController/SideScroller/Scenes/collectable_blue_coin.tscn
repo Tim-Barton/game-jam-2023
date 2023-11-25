@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dbncb0mr1wwn" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_blue_coin.png" id="2_2ipou"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xt1b3"]
-radius = 14.0
+radius = 28.0
 
 [node name="Blue_Coin" type="StaticBody2D" groups=["collectable"]]
 collision_layer = 2

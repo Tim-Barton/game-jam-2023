@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://552yy8deirn1"]
+
+[ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/collectable_apple.gd" id="1_ve4v5"]
+[ext_resource type="Texture2D" uid="uid://0dk7gab08wmx" path="res://CharacterController/SideScroller/GFX/3 Objects/4 Collectables/apple.png" id="2_n8q7y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xt1b3"]
+radius = 21.4761
+
+[node name="Apple" type="StaticBody2D" groups=["stamina_collectable"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_ve4v5")
+
+[node name="Apple" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_n8q7y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, 2)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_xt1b3")
