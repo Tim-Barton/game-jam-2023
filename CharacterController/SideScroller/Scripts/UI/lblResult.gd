@@ -1,7 +1,9 @@
 extends Node
-
+const ScoreItem = preload("res://addons/silent_wolf/Scores/ScoreItem.tscn")
+var list_index = 0
 #UploadScore
 var UploadedScore : bool = false
+var LoadedLeaderBoard : bool = false
 
 #Time Count
 var TimeCount : float = 0.0
@@ -25,6 +27,9 @@ var next_update : float
 
 var total_score : int = 0
 var target_total_score : int = 0
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SilentWolf.configure({
@@ -78,6 +83,22 @@ func _process(delta):
 		UploadedScore = true
 		#TODO: Calculate numeric score and player name
 		SilentWolf.Scores.save_score(LevelDirector.player_name, target_total_score)
+
+	if UploadedScore and not LoadedLeaderBoard:
+		LoadedLeaderBoard = true
+		var scores = SilentWolf.Scores.scores
+		var sw_result = await SilentWolf.Scores.get_scores(3).sw_get_scores_complete
+		scores = sw_result.scores
+		for score in scores:
+			add_item(score.player_name, str(int(score.score)))
 	
 func round_to_dec(num, digit):
 	return round(num * pow(10.0, digit)) / pow(10.0, digit)
+	
+func add_item(player_name: String, score_value: String) -> void:
+	var item = ScoreItem.instantiate()
+	list_index += 1
+	item.get_node("PlayerName").text = str(list_index) + str(". ") + player_name
+	item.get_node("Score").text = score_value
+	item.offset_top = list_index * 100
+	$"HighScores/ScoreItemContainer".add_child(item)
