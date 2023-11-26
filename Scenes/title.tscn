@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c06xve3vm8ysl"]
+[gd_scene load_steps=11 format=3 uid="uid://boiavs41un1y1"]
 
 [ext_resource type="Script" path="res://Scripts/title_menu.gd" id="1_6f3m7"]
 [ext_resource type="Texture2D" uid="uid://xdgyu4iwgio6" path="res://GFX/Level/Sky.png" id="1_ulv8p"]

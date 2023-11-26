@@ -12,7 +12,7 @@ func _process(delta):
 
 func AlphaNumericOnly(inputStr : String) -> String:
 	var subject = inputStr
-	var pattern := "[^a-zA-Z0-9]"
+	var pattern := "[^a-zA-Z0-9 ]"
 	var regex := RegEx.new()
 	regex.compile(pattern)
 	
