@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bxdk6u8rkxyhr" path="res://CharacterController/SideScroller/Scenes/DustTrail.tscn" id="5_50t4q"]
 [ext_resource type="Script" path="res://Scripts/Deathbar.gd" id="5_uwo3c"]
 [ext_resource type="Script" path="res://Scripts/LevelUI.gd" id="6_e4ysi"]
+[ext_resource type="Texture2D" uid="uid://opfbparyv4ws" path="res://rawassets/light_texture.png" id="6_etpyj"]
 [ext_resource type="Texture2D" uid="uid://b3do4cihxhymq" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_gold_coin.png" id="8_l052f"]
 [ext_resource type="Texture2D" uid="uid://dbncb0mr1wwn" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_blue_coin.png" id="9_67d3r"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/StaminaBar.gd" id="9_hclk4"]
@@ -1820,26 +1821,32 @@ layer_0/z_index = 2
 layer_0/tile_data = PackedInt32Array(1245168, 65536, 6, 1245169, 65536, 6, 1245170, 65536, 6, 1179634, 65536, 6, 1179633, 65536, 6, 1179632, 65536, 6, 1179635, 65536, 6, 1245171, 65536, 6, 1245172, 65536, 6, 1179636, 65536, 6, 1179637, 65536, 6, 1245173, 65536, 6, 458760, 0, 6, 524296, 0, 6, 524297, 0, 6, 524298, 0, 6, 524299, 0, 6, 524300, 0, 6, 524301, 0, 6, 524302, 0, 6, 524303, 0, 6, 524304, 0, 6, 524305, 0, 6, 524306, 0, 6, 458770, 0, 6, 458769, 0, 6, 458768, 0, 6, 458767, 0, 6, 458766, 0, 6, 458765, 0, 6, 458764, 0, 6, 458763, 0, 6, 458762, 0, 6, 458761, 0, 6, 589843, 0, 6, 524307, 0, 6, 589844, 0, 6, 655380, 0, 6, 655381, 0, 6, 655382, 0, 6, 720918, 0, 6, 720919, 0, 6, 720917, 0, 6, 655379, 0, 6, 589842, 0, 6, 589841, 0, 6, 589840, 0, 6, 589839, 0, 6, 589838, 0, 6, 589837, 0, 6, 589834, 0, 6)
 
 [node name="Character" parent="Level" instance=ExtResource("2_wt1p3")]
-position = Vector2(-375, 258)
+position = Vector2(-367, 283)
 scale = Vector2(0.75, 0.75)
 
 [node name="DustTrail" parent="Level/Character" instance=ExtResource("5_50t4q")]
-position = Vector2(493.333, -234.667)
+position = Vector2(-2.66666, 30.6666)
 scale = Vector2(1.33333, 1.33333)
 
 [node name="DustTrail" parent="Level/Character/DustTrail" index="0"]
-position = Vector2(-370, 203)
+position = Vector2(-9.00003, -9.00003)
 
 [node name="DustBurst" parent="Level/Character/DustTrail" index="1"]
-position = Vector2(-368.001, 203.001)
+position = Vector2(-8.00003, -9.00003)
 emitting = false
 one_shot = true
 
 [node name="CameraFocus" type="Node2D" parent="Level/Character"]
 position = Vector2(0, -148)
 
+[node name="PointLight2D" type="PointLight2D" parent="Level/Character"]
+position = Vector2(197.333, -21.3333)
+scale = Vector2(18.8906, 16.0833)
+color = Color(0.937255, 0.937255, 0.937255, 0.72549)
+energy = 0.5
+texture = ExtResource("6_etpyj")
+
 [node name="WeatherSystem" parent="Level" instance=ExtResource("1_4n1f5")]
-visible = false
 position = Vector2(0, -63)
 
 [node name="breakaway" parent="Level" instance=ExtResource("23_mxmuh")]
