@@ -12,7 +12,7 @@ func _ready():
 func _process(delta):
 	var hour = $WeatherSystem/CanvasModulate.get_hour()
 	var light = get_node("Character/PointLight2D")
-	print(hour)
+
 	if !hour == 0:
 		if hour >= 15 and hour <= 24: 
 			light.process_mode = 0 # = Mode: Inherit

@@ -47,7 +47,7 @@ const char_snap_length = 32.0
 const char_slope_angle = deg_to_rad(46)
 
 ## Internal Nodes
-var animation_node : AnimatedSprite2D
+var animation_node : Sprite2D#AnimatedSprite2D
 var jump_allowance_node : Timer
 var coyote_node : Timer
 var dash_node : Timer
@@ -109,7 +109,7 @@ func _ready():
 	stamina_zero_penalty_timer.name = "stamina_zero_penalty_timer"
 	add_child(stamina_zero_penalty_timer)
 	
-	animation_node = get_node("animations")
+	animation_node = get_node("Dragon")#get_node("animations")
 	jump_allowance_node = get_node("jump_allowance")
 	coyote_node = get_node("coyote_allowance")
 	dash_node = get_node("dash_time")

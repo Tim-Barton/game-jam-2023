@@ -1248,18 +1248,18 @@ layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array(2359272, 589824, 4, 2359273, 655360, 4, 2359274, 720896, 4)
 
 [node name="Character" parent="Level" instance=ExtResource("2_wt1p3")]
-position = Vector2(-375, 258)
+position = Vector2(-367, 283)
 scale = Vector2(0.75, 0.75)
 
 [node name="DustTrail" parent="Level/Character" instance=ExtResource("5_50t4q")]
-position = Vector2(493.333, -234.667)
+position = Vector2(-2.66666, 30.6666)
 scale = Vector2(1.33333, 1.33333)
 
 [node name="DustTrail" parent="Level/Character/DustTrail" index="0"]
-position = Vector2(-370, 203)
+position = Vector2(-9.00003, -9.00003)
 
 [node name="DustBurst" parent="Level/Character/DustTrail" index="1"]
-position = Vector2(-368.001, 203.001)
+position = Vector2(-8.00003, -9.00003)
 emitting = false
 one_shot = true
 
