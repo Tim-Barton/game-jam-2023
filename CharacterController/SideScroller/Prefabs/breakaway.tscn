@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://chkvj3jkicix7"]
+
+[ext_resource type="Texture2D" uid="uid://hwxk867lhtdb" path="res://GFX/Level/breakaway.png" id="1_i0v3c"]
+[ext_resource type="Script" path="res://Scripts/Breakaway_hitbox.gd" id="2_178ip"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wncvr"]
+radius = 5.0
+height = 35.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3smc4"]
+atlas = ExtResource("1_i0v3c")
+region = Rect2(0, 0, 38, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0ndk"]
+atlas = ExtResource("1_i0v3c")
+region = Rect2(0, 14, 38, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je7r2"]
+atlas = ExtResource("1_i0v3c")
+region = Rect2(0, 28, 38, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xy1k0"]
+atlas = ExtResource("1_i0v3c")
+region = Rect2(0, 42, 38, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfjc7"]
+atlas = ExtResource("1_i0v3c")
+region = Rect2(0, 56, 38, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jh22b"]
+atlas = ExtResource("1_i0v3c")
+region = Rect2(0, 70, 38, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mphx3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3smc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0ndk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_je7r2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy1k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfjc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jh22b")
+}],
+"loop": false,
+"name": &"break",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3smc4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kq418"]
+size = Vector2(34, 7)
+
+[node name="SBody" type="StaticBody2D"]
+script = ExtResource("2_178ip")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wncvr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mphx3")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_kq418")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

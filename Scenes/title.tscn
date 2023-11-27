@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://boiavs41un1y1"]
+[gd_scene load_steps=13 format=3 uid="uid://boiavs41un1y1"]
 
 [ext_resource type="Script" path="res://Scripts/title_menu.gd" id="1_6f3m7"]
 [ext_resource type="Texture2D" uid="uid://xdgyu4iwgio6" path="res://GFX/Level/Sky.png" id="1_ulv8p"]
 [ext_resource type="Texture2D" uid="uid://sscrbnanlaco" path="res://GFX/Level/BG-Mountain.png" id="2_io5jj"]
 [ext_resource type="Script" path="res://Scripts/PlayerTextInput.gd" id="3_symvu"]
+[ext_resource type="Texture2D" uid="uid://cumygtdl8ryo4" path="res://GFX/clear_name.png" id="5_j2rd2"]
+[ext_resource type="Texture2D" uid="uid://bbw2vbg5o6nq5" path="res://GFX/clear_name_pressed.png" id="6_idusa"]
 
 [sub_resource type="SystemFont" id="SystemFont_43nqd"]
 msdf_size = 53
@@ -134,7 +136,19 @@ text = "Enter a player name!"
 label_settings = SubResource("LabelSettings_qoww2")
 horizontal_alignment = 1
 
+[node name="btnClearName" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 803.0
+offset_top = 210.0
+offset_right = 1315.0
+offset_bottom = 722.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("5_j2rd2")
+texture_pressed = ExtResource("6_idusa")
+stretch_mode = 0
+
 [connection signal="gui_input" from="Username" to="Username" method="_on_gui_input"]
 [connection signal="text_changed" from="Username" to="Username" method="_on_text_changed"]
 [connection signal="pressed" from="btnPlay" to="." method="_on_btn_play_pressed"]
 [connection signal="pressed" from="btnHighScores" to="." method="_on_btn_high_scores_pressed"]
+[connection signal="pressed" from="btnClearName" to="Username" method="_on_btn_clear_name_pressed"]

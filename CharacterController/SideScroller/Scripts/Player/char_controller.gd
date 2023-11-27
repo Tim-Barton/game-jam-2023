@@ -248,14 +248,16 @@ func get_character_input():
 	#Apply Accelerations
 	#Both Dodging and wall jumps are set character X speeds while they are in control
 
-	var tile_acceleration_modifier = get_tile_mod("friction_mod", 1, true)
+	var tile_acceleration_modifier = get_tile_mod(1, 1, 0.3, true)
+	var speed_modifier = get_tile_mod(2, 1.0, 0.2, true)
+	
 	if dash_node.is_stopped() && wall_jump_node.is_stopped():
 		var adjust_rate = acceleration * tile_acceleration_modifier
 		if direction != clamp(velocity.x,-1,1):
 			adjust_rate = decceleration * tile_acceleration_modifier
 			
 		var _velocity = velocity.x
-		character_velocity.x = lerp(_velocity, direction * speed,adjust_rate)
+		character_velocity.x = lerp(_velocity, direction * speed * speed_modifier,adjust_rate)
 	
 	#Handle Dash
 	if is_just_pressed("dash"):
@@ -272,17 +274,18 @@ func get_character_input():
 		dust_burst.restart()
 		dust_burst.emitting = true
 
-func get_tile_mod(mod_name : String, default : Variant, TileBelow : bool = false) -> Variant:
+func get_tile_mod(tile_id : int, default : Variant, mod_value : Variant, TileBelow : bool = false) -> Variant:
 	var TileBelowPos : Vector2 = Vector2(position.x, position.y)
 	if TileBelow:
-		TileBelowPos = Vector2(position.x, position.y + 10)
+		TileBelowPos = Vector2(position.x, position.y + 20)
 		
-	var result = World.get_custom_data(TileBelowPos,mod_name)
-	#LevelDirector.DebugMessage(str(result))
-	if result:
-		return result
-	else:
-		return default
+	var tile_found = World.get_custom_data(TileBelowPos)
+	var result = default
+	if tile_id == tile_found:
+		result = mod_value
+	
+	return result
+
 
 func update_player_state():
 	if is_on_floor():

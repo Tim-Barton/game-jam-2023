@@ -13,4 +13,4 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	_follower.set_progress(_follower.get_progress() + CameraSpeed*delta)
-	print(_follower.get_progress())
+	#print(_follower.get_progress())

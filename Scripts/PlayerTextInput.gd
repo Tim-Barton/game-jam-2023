@@ -45,3 +45,7 @@ func _on_gui_input(event):
 			self.grab_focus()
 			self.set_caret_column(16)
 			self.set_caret_line(16)
+
+
+func _on_btn_clear_name_pressed():
+	self.text = ""
