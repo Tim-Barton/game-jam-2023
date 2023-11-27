@@ -6,7 +6,7 @@ var sceneWind = preload("res://CharacterController/SideScroller/Scenes/wind.tscn
 	set(h):
 		INITIAL_HOUR = h
 		time = INGAME_TO_REAL_MINUTE_DURATION * INITIAL_HOUR * MINUTES_PER_HOUR
-
+var hour: int 
 var time:float = 0.0
 var past_minute:float = -1.0
 const MINUTES_PER_DAY = 1440
@@ -35,7 +35,7 @@ func _recalculate_time():
 	var total_minutes = int(time / INGAME_TO_REAL_MINUTE_DURATION)
 	var day = int(total_minutes / MINUTES_PER_DAY)
 	var current_day_minutes = total_minutes % MINUTES_PER_DAY
-	var hour = int(current_day_minutes / MINUTES_PER_HOUR)
+	hour = int(current_day_minutes / MINUTES_PER_HOUR)
 	var minute = int(current_day_minutes % MINUTES_PER_HOUR)
 	
 	if past_minute != minute:
@@ -54,6 +54,8 @@ func _recalculate_time():
 			$Wind.emitting = true
 		else:
 			$Wind.emitting = false
+func get_hour():
+	return hour
 
 
 func _on_value_value_changed(value):
