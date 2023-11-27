@@ -1269,6 +1269,7 @@ position = Vector2(0, -148)
 [node name="PointLight2D" type="PointLight2D" parent="Level/Character"]
 position = Vector2(197.333, -21.3333)
 scale = Vector2(18.8906, 16.0833)
+color = Color(0.937255, 0.937255, 0.937255, 0.72549)
 energy = 0.5
 texture = ExtResource("6_etpyj")
 
