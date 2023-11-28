@@ -14,7 +14,6 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body is Player:
-		print("Break Now!")
 		anim_player.play("break")
 		await anim_player.animation_finished
 		self.queue_free()

@@ -1,4 +1,5 @@
 extends Node
+class_name CameraDirector
 
 @export_group("Camera")
 @export var camera_node : Camera2D
@@ -32,6 +33,7 @@ var current_zoom : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	LevelDirector.CameraDirector = self
 	from_location = camera_node.position
 	to_location = from_location
 	from_zoom = camera_node.zoom

@@ -17,10 +17,12 @@ var change_level : bool = false
 
 var SFXManager : AudioStreamPlayer
 var MusicManager : AudioStreamPlayer
+var CameraDirector : CameraDirector
 
 const JUMP = preload("res://SFX/350905__cabled-mess__jump-c-05.wav")
 const COLLECTIBLE = preload("res://SFX/coin.wav")
 const DEATH = preload("res://SFX/Death.mp3")
+const HIT = preload("res://SFX/hitHurt.wav")
 const SCENECHANGE = preload("res://SFX/404750__owlstorm__retro-video-game-sfx-collect-5.wav")
 const BGM_1 = preload("res://SFX/My Song  (crap, timing is wrong do not use) 2.ogg")
 

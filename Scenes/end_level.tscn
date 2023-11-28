@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scripts/Testing/TestScene_UI.gd" id="2_2onf3"]
 [ext_resource type="Texture2D" uid="uid://bisxqedal0bj2" path="res://GFX/GameOverScreen.png" id="2_raegv"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scripts/UI/lblResult.gd" id="3_vtmoe"]
+[ext_resource type="Texture2D" uid="uid://c1ifl8geq4el3" path="res://rawassets/Dragon.png" id="4_46vnl"]
 [ext_resource type="Texture2D" uid="uid://dbncb0mr1wwn" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_blue_coin.png" id="6_i73u6"]
 [ext_resource type="Texture2D" uid="uid://b3do4cihxhymq" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_gold_coin.png" id="7_aggws"]
 [ext_resource type="Texture2D" uid="uid://bp00xfecsafyi" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_clock.png" id="7_j826h"]
-[ext_resource type="Texture2D" uid="uid://bl6mikx637tr2" path="res://CharacterController/SideScroller/GFX/Swordsman/Dead.png" id="7_jdyr0"]
 
 [sub_resource type="Theme" id="Theme_jonmg"]
 
@@ -104,9 +104,10 @@ horizontal_alignment = 1
 
 [node name="Dead" type="Sprite2D" parent="."]
 position = Vector2(892, 480)
-texture = ExtResource("7_jdyr0")
+scale = Vector2(10, 10)
+texture = ExtResource("4_46vnl")
 region_enabled = true
-region_rect = Rect2(311, 93.5, 74, 34.5)
+region_rect = Rect2(0, -1, 15, 17)
 
 [node name="SmallClock" type="Sprite2D" parent="."]
 position = Vector2(65, 66)

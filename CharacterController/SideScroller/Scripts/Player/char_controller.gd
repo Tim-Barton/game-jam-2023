@@ -196,7 +196,6 @@ func character_jump(increase_jump_count : int, early_release : bool = false) -> 
 	return calc_jump_force
 	
 func wall_jump_coyote_trigger():
-	print("Wall jump timeout")
 	wall_jump_ready = true
 
 func get_character_input():
