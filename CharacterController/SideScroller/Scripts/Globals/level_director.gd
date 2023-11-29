@@ -49,6 +49,8 @@ func ResetLevel():
 	start_end_level = false
 	end_level = false
 	change_level = false
+	yellow_coins = 0
+	blue_coins = 0
 
 func _process(delta):
 	if start_end_level:
