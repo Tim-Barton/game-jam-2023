@@ -71,7 +71,7 @@ offset_bottom = 202.0
 text = "Player Name"
 label_settings = SubResource("LabelSettings_7pe8o")
 
-[node name="Username" type="TextEdit" parent="." node_paths=PackedStringArray("lblInstructions")]
+[node name="Username" type="TextEdit" parent="." node_paths=PackedStringArray("lblInstructions", "title_node")]
 layout_mode = 0
 offset_left = 439.0
 offset_top = 207.0
@@ -86,6 +86,7 @@ drag_and_drop_selection_enabled = false
 caret_multiple = false
 script = ExtResource("3_symvu")
 lblInstructions = NodePath("../Instructions")
+title_node = NodePath("..")
 
 [node name="btnPlay" type="Button" parent="."]
 layout_mode = 0
