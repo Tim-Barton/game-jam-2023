@@ -19,3 +19,8 @@ func _on_pressed():
 func _on_pressed_retry():
 	LevelDirector.ResetLevel()
 	SceneManager.change_scene("res://Scenes/ClimbingLevel.tscn", SceneManager.TransitionTypes.bluewave)
+
+
+func _on_pressed_hs():
+	LevelDirector.ResetLevel()
+	SceneManager.change_scene("res://Scenes/highscores.tscn", SceneManager.TransitionTypes.bluewave)
