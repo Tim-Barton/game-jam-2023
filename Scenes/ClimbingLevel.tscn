@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://b3do4cihxhymq" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_gold_coin.png" id="8_l052f"]
 [ext_resource type="Texture2D" uid="uid://dbncb0mr1wwn" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_blue_coin.png" id="9_67d3r"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/StaminaBar.gd" id="9_hclk4"]
-[ext_resource type="PackedScene" uid="uid://ce1gg3rb02tjg" path="res://CharacterController/SideScroller/Scenes/death_fog.tscn" id="9_lfsrg"]
+[ext_resource type="PackedScene" uid="uid://dd8h12ob7cnxb" path="res://CharacterController/SideScroller/Scenes/death_fog.tscn" id="9_lfsrg"]
 [ext_resource type="Script" path="res://CharacterController/SideScroller/Scenes/Timer.gd" id="10_dammo"]
 [ext_resource type="Texture2D" uid="uid://bp00xfecsafyi" path="res://CharacterController/SideScroller/GFX/3 Objects/2 Decoration/small_clock.png" id="10_hss5m"]
 [ext_resource type="PackedScene" uid="uid://d3s2ajibehkfx" path="res://CharacterController/SideScroller/Scenes/collectable_gold_coin.tscn" id="16_uiuy6"]
@@ -1850,6 +1850,7 @@ energy = 0.5
 texture = ExtResource("6_etpyj")
 
 [node name="WeatherSystem" parent="Level" instance=ExtResource("1_4n1f5")]
+visible = false
 position = Vector2(0, -63)
 
 [node name="Boulders" type="Node2D" parent="Level"]
@@ -1880,11 +1881,9 @@ position = Vector2(432, -612)
 position = Vector2(-100, 100)
 zoom = Vector2(1.25, 1.25)
 
-[node name="Node2D" parent="LevelDirector/Camera2D" instance=ExtResource("9_lfsrg")]
-position = Vector2(-646, 264)
-
-[node name="Node2D2" parent="LevelDirector/Camera2D" instance=ExtResource("9_lfsrg")]
-position = Vector2(-247, 265)
+[node name="DeathFog" parent="LevelDirector/Camera2D" instance=ExtResource("9_lfsrg")]
+position = Vector2(-612, 260)
+scale = Vector2(1.04, 1)
 
 [node name="UI" type="Control" parent="LevelDirector/Camera2D" node_paths=PackedStringArray("character_node")]
 z_index = 1
