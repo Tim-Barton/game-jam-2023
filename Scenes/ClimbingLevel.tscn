@@ -23,8 +23,8 @@
 [ext_resource type="Script" path="res://Scripts/BoulderSpawner.gd" id="19_xbjjo"]
 [ext_resource type="PackedScene" uid="uid://552yy8deirn1" path="res://CharacterController/SideScroller/Scenes/collectable_apple.tscn" id="20_dkdqg"]
 [ext_resource type="Script" path="res://Scripts/CameraAnchor.gd" id="21_mapke"]
-[ext_resource type="PackedScene" path="res://CharacterController/SideScroller/Prefabs/breakaway.tscn" id="23_mxmuh"]
-[ext_resource type="PackedScene" path="res://CharacterController/SideScroller/Prefabs/FallingBoulder.tscn" id="24_e1fj2"]
+[ext_resource type="PackedScene" uid="uid://chkvj3jkicix7" path="res://CharacterController/SideScroller/Prefabs/breakaway.tscn" id="23_mxmuh"]
+[ext_resource type="PackedScene" uid="uid://0w7umgh6fkvp" path="res://CharacterController/SideScroller/Prefabs/FallingBoulder.tscn" id="24_e1fj2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jsr68"]
 resource_name = "Snowscape"

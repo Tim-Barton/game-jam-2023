@@ -47,6 +47,22 @@ offset_right = 545.0
 offset_bottom = 294.0
 grow_horizontal = 2
 grow_vertical = 2
+text = "Return to Title"
+script = ExtResource("2_2onf3")
+
+[node name="btnReturn2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 410.0
+offset_top = 173.0
+offset_right = 541.0
+offset_bottom = 204.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Try Again"
 script = ExtResource("2_2onf3")
 
@@ -142,3 +158,4 @@ text = "High Scores:"
 label_settings = SubResource("LabelSettings_so06j")
 
 [connection signal="pressed" from="btnReturn" to="btnReturn" method="_on_pressed"]
+[connection signal="pressed" from="btnReturn2" to="btnReturn2" method="_on_pressed_retry"]

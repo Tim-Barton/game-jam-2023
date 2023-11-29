@@ -13,4 +13,9 @@ func _process(delta):
 
 
 func _on_pressed():
+	LevelDirector.ResetLevel()
 	SceneManager.change_scene("res://Scenes/title.tscn", SceneManager.TransitionTypes.bluewave)
+
+func _on_pressed_retry():
+	LevelDirector.ResetLevel()
+	SceneManager.change_scene("res://Scenes/ClimbingLevel.tscn", SceneManager.TransitionTypes.bluewave)

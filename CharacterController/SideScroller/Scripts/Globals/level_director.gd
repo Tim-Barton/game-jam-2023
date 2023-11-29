@@ -45,6 +45,10 @@ func _ready():
 	add_child(MusicPlayerNode)
 	MusicManager = get_node("Music")
 
+func ResetLevel():
+	start_end_level = false
+	end_level = false
+	change_level = false
 
 func _process(delta):
 	if start_end_level:
