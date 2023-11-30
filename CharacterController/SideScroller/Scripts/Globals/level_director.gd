@@ -25,6 +25,10 @@ const DEATH = preload("res://SFX/Death.mp3")
 const HIT = preload("res://SFX/hitHurt.wav")
 const SCENECHANGE = preload("res://SFX/404750__owlstorm__retro-video-game-sfx-collect-5.wav")
 const BGM_1 = preload("res://SFX/My Song  (crap, timing is wrong do not use) 2.ogg")
+const BGM_GameOver = preload("res://SFX/Game_Over_BGM_-_30112023_12.58_pm.mp3")
+const BGM_Level = preload("res://SFX/Level.Title_BGM_-_30112023_12.44_pm.mp3")
+const BGM_SciFi = preload("res://SFX/Scifi_Lvl_BGM_-_30112023_1.37_pm.mp3")
+const BGM_Title = preload("res://SFX/Title_BGM_-_30112023_1.13_pm.mp3")
 
 func _ready():
 	var new_level_countout := Timer.new()

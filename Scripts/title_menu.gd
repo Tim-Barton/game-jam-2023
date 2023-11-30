@@ -5,6 +5,7 @@ extends Control
 func _ready():
 	if LevelDirector.player_name != "Unknown Player":
 		$Username.text = LevelDirector.player_name
+	LevelDirector.PlayMusic(LevelDirector.BGM_Title)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

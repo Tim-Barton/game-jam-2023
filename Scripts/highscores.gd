@@ -8,6 +8,7 @@ var LoadedLeaderBoard : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	LevelDirector.PlayMusic(LevelDirector.BGM_SciFi)
 	SilentWolf.configure({
 		"api_key": "6NW2Oigo5P4Zb8GYCZBMl6jN2I3ug4pn3Ktr2FGk",
 		"game_id": "GameJam2023",

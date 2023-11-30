@@ -7,7 +7,7 @@ static var _instance: World = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_instance = self if _instance == null else _instance
-	LevelDirector.PlayMusic(LevelDirector.BGM_1)
+	LevelDirector.PlayMusic(LevelDirector.BGM_Level)
 	tile_map.visible = false
 	
 func _process(delta):
